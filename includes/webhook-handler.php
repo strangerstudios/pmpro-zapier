@@ -190,7 +190,12 @@ switch ( $action ) {
 		$order->billing->phone              = pmpro_getParam( 'billing_phone' );
 
 		if ( $order->saveOrder() ) {
-			echo json_encode( array( 'status' => 'success' ) );
+			echo json_encode( 
+				array( 
+					'status' => 'success',
+					'order_code' => $order->code
+				) 
+			);
 		} else {
 			echo json_encode(
 				array(
@@ -251,7 +256,11 @@ switch ( $action ) {
 		$order->billing->phone   = pmpro_getParam( 'billing_phone', 'REQUEST', $order->billing->phone );
 
 		if ( $order->saveOrder() ) {
-			echo json_encode( array( 'status' => 'success' ) );
+			echo json_encode( 
+				array( 
+					'status' => 'success' 
+				) 
+			);
 		} else {
 			echo json_encode(
 				array(
