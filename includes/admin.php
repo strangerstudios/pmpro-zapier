@@ -6,7 +6,7 @@
 add_action( 'init', array( 'PMPro_Zapier', 'init' ) );
 
 /**
- * Register activation hook. 
+ * Register activation hook.
  */
 register_activation_hook( PMPRO_ZAPIER_BASENAME, 'pmproz_admin_notice_activation_hook' );
 
@@ -65,7 +65,7 @@ function pmproz_plugin_row_meta( $links, $file ) {
 			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/add-ons/pmpro-zapier/' ) . '" title="' . esc_attr( __( 'View Documentation', 'pmpro' ) ) . '">' . __( 'Docs', 'pmpro-zapier' ) . '</a>',
 			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/support/' ) . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'pmpro' ) ) . '">' . __( 'Support', 'pmpro-zapier' ) . '</a>',
 		);
-		$links = array_merge( $links, $new_links );
+		$links     = array_merge( $links, $new_links );
 	}
 	return $links;
 }
