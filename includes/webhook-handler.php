@@ -134,7 +134,7 @@ switch ( $action ) {
 		}
 
 		// check the level
-		if ( empty( $level_id ) && $level_id !== '0' ) {
+		if ( empty( $level_id ) && $level_id !== 0 ) {
 			$pmpro_error .= __( 'You must pass in a new level_id or 0.', 'pmpro-zapier' );
 		}
 
