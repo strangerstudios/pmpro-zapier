@@ -25,7 +25,7 @@ pmproz_webhook_log( __( 'Data Received', 'pmpro-zapier' ) . ': ' . var_export( $
 
 // Bail if PMPro is not loaded
 if ( ! function_exists( 'pmpro_getParam' ) ) {
-	pmproz_webhook_log( __( 'Paid Memberships Pro mustbe activated.', 'pmpro-zapier' ) );
+	pmproz_webhook_log( __( 'Paid Memberships Pro must be activated.', 'pmpro-zapier' ) );
 	pmproz_webhook_exit();
 }
 
