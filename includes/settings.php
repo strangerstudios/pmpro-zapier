@@ -75,6 +75,8 @@ function pmproz_admin_init() {
 		add_settings_field( 'pmproz_settings_field_pmpro_updated_order_url', __( 'Updated Order Webhook URL', 'pmpro-zapier' ), 'pmproz_settings_field_pmpro_updated_order_url', 'pmproz_options', 'pmproz_settings_triggers' );
 		add_settings_field( 'pmproz_settings_field_pmpro_after_change_membership_level', __( 'Changed Membership Level', 'pmpro-zapier' ), 'pmproz_settings_field_pmpro_after_change_membership_level', 'pmproz_options', 'pmproz_settings_triggers' );
 		add_settings_field( 'pmproz_settings_field_pmpro_after_change_membership_level_url', __( 'Changed Membership Level Webhook URL', 'pmpro-zapier' ), 'pmproz_settings_field_pmpro_after_change_membership_level_url', 'pmproz_options', 'pmproz_settings_triggers' );
+		add_settings_field( 'pmproz_settings_field_pmpro_after_checkout', __( 'After Checkout', 'pmpro-zapier' ), 'pmproz_settings_field_pmpro_after_checkout', 'pmproz_options', 'pmproz_settings_triggers' );
+		add_settings_field( 'pmproz_settings_field_pmpro_after_checkout_url', __( 'After Checkout Webhook URL', 'pmpro-zapier' ), 'pmproz_settings_field_pmpro_after_checkout_url', 'pmproz_options', 'pmproz_settings_triggers' );
 	}
 
 	// Load settings for account settings
@@ -101,6 +103,8 @@ function pmproz_options_validate( $input ) {
 	$new_input['pmpro_added_order_url']               = ! empty( $input['pmpro_added_order_url'] ) ? esc_url( $input['pmpro_added_order_url'] ) : '';
 	$new_input['pmpro_updated_order_url']             = ! empty( $input['pmpro_updated_order_url'] ) ? esc_url( $input['pmpro_updated_order_url'] ) : '';
 	$new_input['pmpro_after_change_membership_level_url'] = ! empty( $input['pmpro_after_change_membership_level_url'] ) ? esc_url( $input['pmpro_after_change_membership_level_url'] ) : '';
+	$new_input['pmpro_after_checkout']= ! empty( $input['pmpro_after_checkout'] ) ? intval( $input['pmpro_after_checkout'] ) : '';
+	$new_input['pmpro_after_checkout_url'] = ! empty( $input['pmpro_after_checkout_url'] ) ? esc_url( $input['pmpro_after_checkout_url'] ) : '';
 
 	return $new_input;
 }
@@ -266,4 +270,30 @@ function pmproz_settings_field_pmpro_after_change_membership_level_url() {
 	$value          = ! empty( $pmproz_options['pmpro_after_change_membership_level_url'] ) ? $pmproz_options['pmpro_after_change_membership_level_url'] : '';
 	?>
 	<input type="text" name="pmproz_options[pmpro_after_change_membership_level_url]" size=60 value="<?php echo esc_attr( $value ); ?>">
-<?php } ?>
+	<?php 
+}
+
+/**
+ * The New Order Added checkbox field displayed in Memberships > PMPro Zapier.
+ */
+function pmproz_settings_field_pmpro_after_checkout() {
+	$pmproz_options = PMPro_Zapier::get_options();
+	$value          = ! empty( $pmproz_options['pmpro_after_checkout'] ) ? $pmproz_options['pmpro_after_checkout'] : '';
+	?>
+	<label for="pmpro_after_checkout">
+		<input type="checkbox" value=1 name="pmproz_options[pmpro_after_checkout]" id="pmpro_after_checkout" <?php checked( $value ); ?>>
+		<?php esc_attr_e( 'Update Zapier after a user signs up. Occurs for initial signups / manual renewals only.', 'pmpro-zapier' ); ?>
+	</label>
+	<?php
+}
+
+/**
+ * The New Order Added URL field displayed in Memberships > PMPro Zapier.
+ */
+function pmproz_settings_field_pmpro_after_checkout_url() {
+	$pmproz_options = PMPro_Zapier::get_options();
+	$value          = ! empty( $pmproz_options['pmpro_after_checkout_url'] ) ? $pmproz_options['pmpro_after_checkout_url'] : '';
+	?>
+	<input type="text" name="pmproz_options[pmpro_after_checkout_url]" size=60 value="<?php echo esc_attr( $value ); ?>">
+	<?php
+}

@@ -3,7 +3,7 @@ Contributors: strangerstudios
 Tags: paid memberships pro, pmpro, zapier
 Requires at least: 4.9
 Tested up to: 4.9.5
-Stable tag: .3
+Stable tag: 1.0
 
 Integrate activity on your membership site with thousands of other apps via Zapier.
 
@@ -150,6 +150,9 @@ Please post it in the issues section of GitHub and we'll fix it as soon as we ca
 Please visit our premium support site at http://www.paidmembershipspro.com for more documentation and our support forums.
 
 == Changelog ==
+
+= 1.0 =
+* Launched in the WordPress.org repository.
 
 = .3 =
 * BUG FIX/ENHANCEMENT: Changed the webhook handler URL to go through '{home_url}/?pmpro_zapier_webhook=1&api_key={api_key}' instead of directly to the webhook file. IMPORTANT! You will need to update any Zaps you made prior to version .3.
