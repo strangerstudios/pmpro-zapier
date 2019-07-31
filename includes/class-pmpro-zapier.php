@@ -90,6 +90,9 @@ class PMPro_Zapier {
 
 		$data['order'] = $order;
 
+		// filter the data before we send it to Zapier
+		$data = apply_filters('pmproz_added_order_data', $data, $order, $order->user_id );
+
 		$zap = new PMPro_Zapier();
 		$zap->prepare_request( 'pmpro_added_order' );
 		$zap->post( $data );
@@ -123,6 +126,9 @@ class PMPro_Zapier {
 		$data['username'] = $user->user_login;
 
 		$data['order'] = $order;
+
+		// filter the data before we send it to Zapier
+		$data = apply_filters('pmproz_updated_order_data', $data, $order, $order->user_id );
 
 		$zap = new PMPro_Zapier();
 		$zap->prepare_request( 'pmpro_updated_order' );
@@ -179,6 +185,9 @@ class PMPro_Zapier {
 		$data['old_level_status'] = $wpdb->get_var( $sqlQuery );
 
 		$data['level'] = $level;
+
+		// filter the data before we send it to Zapier
+		$data = apply_filters('pmproz_after_change_membership_level_data', $data, $level_id, $user_id, $cancel_level);
 
 		$zap = new PMPro_Zapier();
 		$zap->prepare_request( 'pmpro_after_change_membership_level' );
