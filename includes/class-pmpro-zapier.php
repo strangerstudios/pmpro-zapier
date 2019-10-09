@@ -90,6 +90,8 @@ class PMPro_Zapier {
 
 		$data['order'] = $order;
 
+		$data['date'] = date( get_option( 'date_format' ), $order->timestamp );
+
 		$zap = new PMPro_Zapier();
 		$zap->prepare_request( 'pmpro_added_order' );
 		$zap->post( $data );
@@ -123,6 +125,8 @@ class PMPro_Zapier {
 		$data['username'] = $user->user_login;
 
 		$data['order'] = $order;
+
+		$data['date'] = date( get_option( 'date_format' ), $order->timestamp );
 
 		$zap = new PMPro_Zapier();
 		$zap->prepare_request( 'pmpro_updated_order' );
