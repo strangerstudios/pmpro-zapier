@@ -44,6 +44,7 @@ switch ( $action ) {
 		if ( empty( $user ) ) {
 			$user_email = pmpro_getParam( 'user_email' );
 			$user_login = pmpro_getParam( 'user_login' );
+			$user_pass  = pmpro_getParam( 'user_pass' );
 			$full_name  = pmpro_getParam( 'full_name' );
 			$first_name = pmpro_getParam( 'first_name' );
 			$last_name  = pmpro_getParam( 'last_name' );
