@@ -147,7 +147,7 @@ class PMPro_Zapier {
 		// Cancelling
 		if ( $level_id == 0 ) {
 			$level     = new StdClass();
-			$level->id = '0';
+			$level->ID = '0';
 		} else {
 			$level = pmpro_getMembershipLevelForUser( $user_id );
 
