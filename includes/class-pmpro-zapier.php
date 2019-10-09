@@ -89,6 +89,8 @@ class PMPro_Zapier {
 		$data['username'] = $user->user_login;
 
 		$data['order'] = $order;
+    
+    $data['date'] = date( get_option( 'date_format' ), $order->timestamp );
 
 		// filter the data before we send it to Zapier
 		$data = apply_filters('pmproz_added_order_data', $data, $order, $order->user_id );
@@ -126,8 +128,10 @@ class PMPro_Zapier {
 		$data['username'] = $user->user_login;
 
 		$data['order'] = $order;
+    
+    $data['date'] = date( get_option( 'date_format' ), $order->timestamp );
 
-		// filter the data before we send it to Zapier
+    // filter the data before we send it to Zapier
 		$data = apply_filters('pmproz_updated_order_data', $data, $order, $order->user_id );
 
 		$zap = new PMPro_Zapier();
