@@ -1,9 +1,9 @@
 === Paid Memberships Pro - Zapier Add On ===
 Contributors: strangerstudios
 Tags: paid memberships pro, pmpro, zapier
-Requires at least: 4.9
-Tested up to: 5.2.2
-Stable tag: .3
+Requires at least: 4.7
+Tested up to: 5.2.3
+Stable tag: 1.0
 
 Integrate activity on your membership site with thousands of other apps via Zapier.
 
@@ -20,6 +20,8 @@ Our Zapier integration includes the following triggers and actions to send infor
 *Updated Order*
 
 *Changed Membership Level*
+
+*After Checkout*
 
 = Actions =
 
@@ -150,6 +152,13 @@ Please post it in the issues section of GitHub and we'll fix it as soon as we ca
 Please visit our premium support site at http://www.paidmembershipspro.com for more documentation and our support forums.
 
 == Changelog ==
+
+= 1.1 =
+* ENHANCEMENT: New trigger added for after checkout.
+* ENHANCEMENT: Additional hooks added in to allow customizing data passed through. Please see documentation for more information about this.
+
+= 1.0 =
+* Launched in the WordPress.org repository, set to V1.0
 
 = .3 =
 * BUG FIX/ENHANCEMENT: Changed the webhook handler URL to go through '{home_url}/?pmpro_zapier_webhook=1&api_key={api_key}' instead of directly to the webhook file. IMPORTANT! You will need to update any Zaps you made prior to version .3.
