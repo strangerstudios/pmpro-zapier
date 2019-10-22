@@ -20,6 +20,8 @@ class PMPro_Zapier {
 				'pmpro_after_change_membership_level',
 			), 10, 3
 		);
+		add_action( 'pmpro_after_checkout', array( __CLASS__, 'pmpro_after_checkout' ), 10, 2 );
+
 
 		// Load text domain.
 		load_plugin_textdomain( 'pmpro-zapier' );
@@ -195,6 +197,44 @@ class PMPro_Zapier {
 
 		$zap = new PMPro_Zapier();
 		$zap->prepare_request( 'pmpro_after_change_membership_level' );
+		$zap->post( $data );
+	}
+
+
+	/**
+	 * Send data to Zapier when an order is updated
+	 */
+	static function pmpro_after_checkout( $user_id, $order ) {
+		// bail if setting is not checked
+		$options = PMPro_Zapier::get_options();
+		if ( empty( $options['pmpro_after_checkout'] ) ) {
+			return;
+		}
+
+		// Add some extra data to the result.
+		$data = array();
+
+		$user = get_userdata( $user_id );
+
+		$data['user_id'] = $user_id;
+		$data['username']   = $user->user_login;
+		$data['user_email'] = $user->user_email;
+
+		if ( ! empty( $order ) ) {
+			unset( $order->ExpirationDate );
+			unset( $order->ExpirationDate_YdashM );
+			unset( $order->Gateway );
+			unset( $order->paypal_token );
+			unset( $order->session_id );
+			unset( $order->sqlQuery );
+
+			$data['date'] = date( get_option( 'date_format' ), $order->timestamp );
+		}
+
+		$data['order'] = $order;
+
+		$zap = new PMPro_Zapier();
+		$zap->prepare_request( 'pmpro_after_checkout' );
 		$zap->post( $data );
 	}
 
