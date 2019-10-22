@@ -220,6 +220,12 @@ class PMPro_Zapier {
 		$data['username']   = $user->user_login;
 		$data['user_email'] = $user->user_email;
 
+		$level = pmpro_getMembershipLevelForUser( $user_id );
+		if ( ! empty( $level ) ) {
+			$data['level_id'] = $level->id;
+			$data['level_name'] = $level->name;
+		}
+
 		if ( ! empty( $order ) ) {
 			unset( $order->ExpirationDate );
 			unset( $order->ExpirationDate_YdashM );
@@ -232,6 +238,8 @@ class PMPro_Zapier {
 		}
 
 		$data['order'] = $order;
+
+		$data = apply_filters( 'pmproz_after_checkout_data', $data, $user_id, $level, $order );
 
 		$zap = new PMPro_Zapier();
 		$zap->prepare_request( 'pmpro_after_checkout' );
