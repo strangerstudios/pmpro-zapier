@@ -25,7 +25,7 @@ pmproz_webhook_log( __( 'Data Received', 'pmpro-zapier' ) . ': ' . var_export( $
 
 // Bail if PMPro is not loaded
 if ( ! function_exists( 'pmpro_getParam' ) ) {
-	pmproz_webhook_log( __( 'Paid Memberships Pro mustbe activated.', 'pmpro-zapier' ) );
+	pmproz_webhook_log( __( 'Paid Memberships Pro must be activated.', 'pmpro-zapier' ) );
 	pmproz_webhook_exit();
 }
 
@@ -67,7 +67,7 @@ switch ( $action ) {
 
 				// generate a password
 				if ( empty( $user_pass ) ) {
-					$user_pass = pmpro_getDiscountCode() . pmpro_getDiscountCode();
+					$user_pass = wp_generate_password( 20, true, false );
 				}
 
 				// insert user
@@ -81,6 +81,10 @@ switch ( $action ) {
 				$user_id        = apply_filters( 'pmpro_new_user', '', $new_user_array );
 				if ( empty( $user_id ) ) {
 					$user_id = wp_insert_user( $new_user_array );
+
+					// email the user and admin if we create the user.
+					wp_new_user_notification( $user_id, null, 'both' );
+
 				}
 			}
 		} else {
@@ -104,7 +108,6 @@ switch ( $action ) {
 			echo json_encode( array( 'status' => 'success' ) );
 			pmproz_webhook_log( __( 'changed level' , 'pmpro-zapier' ) );
 		} else {
-
 			echo json_encode(
 				array(
 					'status'  => 'failed',
@@ -142,6 +145,9 @@ switch ( $action ) {
 		if ( empty( $pmpro_error ) && pmpro_changeMembershipLevel( $level_id, $user_id, 'zapier_changed' ) ) {
 			echo json_encode( array( 'status' => 'success' ) );
 			pmproz_webhook_log( __( 'changed level', 'pmpro-zapier' ) );
+			$pmpro_email = new PMProEmail();
+			$pmpro_email->sendAdminChangeEmail( $user );
+
 		} else {
 
 			echo json_encode(
@@ -191,6 +197,9 @@ switch ( $action ) {
 		$order->billing->phone              = pmpro_getParam( 'billing_phone' );
 
 		if ( $order->saveOrder() ) {
+			// Send an invoice email when an order is created.
+			$pmpro_email = new PMProEmail();
+			$pmpro_email->sendInvoiceEmail( $user, $order );
 			echo json_encode( 
 				array( 
 					'status' => 'success',
