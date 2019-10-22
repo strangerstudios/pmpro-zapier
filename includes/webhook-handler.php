@@ -44,6 +44,7 @@ switch ( $action ) {
 		if ( empty( $user ) ) {
 			$user_email = pmpro_getParam( 'user_email' );
 			$user_login = pmpro_getParam( 'user_login' );
+			$user_pass  = pmpro_getParam( 'user_pass' );
 			$full_name  = pmpro_getParam( 'full_name' );
 			$first_name = pmpro_getParam( 'first_name' );
 			$last_name  = pmpro_getParam( 'last_name' );
@@ -137,7 +138,7 @@ switch ( $action ) {
 		}
 
 		// check the level
-		if ( empty( $level_id ) && $level_id !== '0' ) {
+		if ( empty( $level_id ) && $level_id !== 0 ) {
 			$pmpro_error .= __( 'You must pass in a new level_id or 0.', 'pmpro-zapier' );
 		}
 
@@ -199,8 +200,12 @@ switch ( $action ) {
 			// Send an invoice email when an order is created.
 			$pmpro_email = new PMProEmail();
 			$pmpro_email->sendInvoiceEmail( $user, $order );
-
-			echo json_encode( array( 'status' => 'success' ) );
+			echo json_encode( 
+				array( 
+					'status' => 'success',
+					'order_code' => $order->code
+				) 
+			);
 		} else {
 			echo json_encode(
 				array(
@@ -261,7 +266,11 @@ switch ( $action ) {
 		$order->billing->phone   = pmpro_getParam( 'billing_phone', 'REQUEST', $order->billing->phone );
 
 		if ( $order->saveOrder() ) {
-			echo json_encode( array( 'status' => 'success' ) );
+			echo json_encode( 
+				array( 
+					'status' => 'success' 
+				) 
+			);
 		} else {
 			echo json_encode(
 				array(
