@@ -98,7 +98,7 @@ class PMPro_Zapier {
 		$data = apply_filters('pmproz_added_order_data', $data, $order, $order->user_id );
 
 		$zap = new PMPro_Zapier();
-		$zap->prepare_request( 'pmpro_added_order' );
+		$zap->prepare_request( 'pmpro_added_order', $data );
 		$zap->post( $data );
 	}
 
@@ -137,7 +137,7 @@ class PMPro_Zapier {
 		$data = apply_filters('pmproz_updated_order_data', $data, $order, $order->user_id );
 
 		$zap = new PMPro_Zapier();
-		$zap->prepare_request( 'pmpro_updated_order' );
+		$zap->prepare_request( 'pmpro_updated_order', $data );
 		$zap->post( $data );
 	}
 
@@ -196,7 +196,7 @@ class PMPro_Zapier {
 		$data = apply_filters('pmproz_after_change_membership_level_data', $data, $level_id, $user_id, $cancel_level);
 
 		$zap = new PMPro_Zapier();
-		$zap->prepare_request( 'pmpro_after_change_membership_level' );
+		$zap->prepare_request( 'pmpro_after_change_membership_level', $data );
 		$zap->post( $data );
 	}
 
@@ -242,19 +242,19 @@ class PMPro_Zapier {
 		$data = apply_filters( 'pmproz_after_checkout_data', $data, $user_id, $level, $order );
 
 		$zap = new PMPro_Zapier();
-		$zap->prepare_request( 'pmpro_after_checkout' );
+		$zap->prepare_request( 'pmpro_after_checkout', $data );
 		$zap->post( $data );
 	}
 
 	/**
 	 * Figure out which webhook url to use.
 	 */
-	function prepare_request( $hook ) {
+	function prepare_request( $hook, $data ) {
 		$options = PMPro_Zapier::get_options();
 		if ( empty( $options[ $hook ] ) && $hook != 'test' ) {
 			return false;
 		}
-		$this->webhook_url = $options[ $hook . '_url' ];
+		$this->webhook_url = apply_filters( 'pmproz_prepare_request_webhook', $options[ $hook . '_url' ], $data );
 	}
 
 	/**
