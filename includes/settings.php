@@ -94,9 +94,9 @@ add_action( 'admin_init', 'pmproz_admin_init' );
  * Validate PMPro Zapier settings/options
  */
 function pmproz_options_validate( $input ) {
-
+	$options = get_option( 'pmproz_options' );
 	$new_input                                        = array();
-	$new_input['api_key']                             = ! empty( $input['api_key'] ) ? sanitize_key( $input['api_key'] ) : '';
+	$new_input['api_key']                             = ! empty( $input['api_key'] ) ? sanitize_key( $input['api_key'] ) : $options['api_key'];
 	$new_input['pmpro_added_order']                   = ! empty( $input['pmpro_added_order'] ) ? intval( $input['pmpro_added_order'] ) : '';
 	$new_input['pmpro_updated_order']                 = ! empty( $input['pmpro_updated_order'] ) ? intval( $input['pmpro_updated_order'] ) : '';
 	$new_input['pmpro_after_change_membership_level'] = ! empty( $input['pmpro_after_change_membership_level'] ) ? intval( $input['pmpro_after_change_membership_level'] ) : '';
@@ -193,9 +193,12 @@ function pmproz_settings_triggers() {
  */
 function pmproz_settings_field_api_key() {
 	$pmproz_options = PMPro_Zapier::get_options();
+
 	?>
 	<input type="text" name="pmproz_options[api_key]" size=40 value="<?php echo esc_attr( $pmproz_options['api_key'] ); ?>" readonly>
 	<?php
+
+	
 }
 
 /**
