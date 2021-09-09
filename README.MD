@@ -8,7 +8,7 @@
 ### Welcome to the Paid Memberships Pro – Zapier Add On GitHub Repository
 Integrate activity on your membership site with thousands of other apps via Zapier (requires Paid Memberships Pro).
 
-** Update: PMPro v2.6+ introduced native support for Zapier without the need for this Add On. [Read the documentation on core Zapier compatibility to get started](https://www.paidmembershipspro.com/documentation/compatibility/zapier/). This native integration allows multiple events for each action and trigger, which was a previous limitation of the Add On’s webhook methods.**
+**Update: PMPro v2.6+ introduced native support for Zapier without the need for this Add On. [Read the documentation on core Zapier compatibility to get started](https://www.paidmembershipspro.com/documentation/compatibility/zapier/). This native integration allows multiple events for each action and trigger, which was a previous limitation of the Add On’s webhook methods.**
 
 For more information please visit [www.paidmembershipspro.com/add-ons/pmpro-zapier/](https://www.paidmembershipspro.com/add-ons/pmpro-zapier/)
 
