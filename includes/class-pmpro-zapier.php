@@ -92,7 +92,7 @@ class PMPro_Zapier {
 
 		$data['order'] = $order;
     
-    	$data['date'] = date( get_option( 'date_format' ), $order->timestamp );
+    	$data['date'] = date_i18n( get_option( 'date_format' ), $order->timestamp );
 
     	$data['first_name'] = $order->FirstName;
     	$data['last_name'] = $order->LastName;
@@ -134,7 +134,7 @@ class PMPro_Zapier {
 
 		$data['order'] = $order;
     
-	    $data['date'] = date( get_option( 'date_format' ), $order->timestamp );
+	    $data['date'] = date_i18n( get_option( 'date_format' ), $order->timestamp );
 
 	    $data['first_name'] = $order->FirstName;
     	$data['last_name'] = $order->LastName;
@@ -180,10 +180,10 @@ class PMPro_Zapier {
 
 		// Make dates human-readable.
 		if ( ! empty( $level->enddate ) ) {
-			$level->enddate = date( get_option( 'date_format' ), $level->enddate );
+			$level->enddate = date_i18n( get_option( 'date_format' ), $level->enddate );
 		}
 		if ( ! empty( $level->startdate ) ) {
-			$level->startdate = date( get_option( 'date_format' ), $level->startdate );
+			$level->startdate = date_i18n( get_option( 'date_format' ), $level->startdate );
 		}
 
 		// Add some extra data to the result.
@@ -240,7 +240,7 @@ class PMPro_Zapier {
 			unset( $order->session_id );
 			unset( $order->sqlQuery );
 
-			$data['date'] = date( get_option( 'date_format' ), $order->timestamp );
+			$data['date'] = date_i18n( get_option( 'date_format' ), $order->timestamp );
 		}
 
 		$data['order'] = $order;
