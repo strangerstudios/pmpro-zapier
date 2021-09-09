@@ -17,7 +17,7 @@ function pmproz_add_submenu_page() {
 	<div class="wrap">
 		<?php settings_errors(); ?>
 		<form action="options.php" method="POST">
-			<h1><?php esc_attr_e( 'Paid Memberships Pro - Zapier Add On', 'pmpro-zapier' ); ?></h1>
+			<h1><?php esc_html_e( 'Paid Memberships Pro - Zapier Add On', 'pmpro-zapier' ); ?></h1>
 			<p><?php printf( __( 'Integrate activity on your membership site with thousands of other apps via Zapier. <a href="%s" target="_blank">Read the documentation</a> for more information about this Add On.', 'pmpro-zapier' ), 'https://www.paidmembershipspro.com/add-ons/pmpro-zapier/' ); ?></p>
 			<?php
 			if ( isset( $_REQUEST['account_settings'] ) ) {
@@ -31,12 +31,12 @@ function pmproz_add_submenu_page() {
 				<?php
 				if ( empty( $account ) ) {
 ?>
- nav-tab-active<?php } ?>"><?php esc_attr_e( 'Send Data to Zapier (Triggers)', 'pmpro-zapier' ); ?></a>
+ nav-tab-active<?php } ?>"><?php esc_html_e( 'Send Data to Zapier (Triggers)', 'pmpro-zapier' ); ?></a>
 				<a href="admin.php?page=pmpro-zapier&account_settings=1" class="nav-tab
 				<?php
 				if ( ! empty( $account ) ) {
 ?>
- nav-tab-active<?php } ?>"><?php esc_attr_e( 'Receive Data From Zapier (Actions)', 'pmpro-zapier' ); ?></a>
+ nav-tab-active<?php } ?>"><?php esc_html_e( 'Receive Data From Zapier (Actions)', 'pmpro-zapier' ); ?></a>
 			</h2>
 			<?php do_settings_sections( 'pmproz_options' ); ?>
 			<?php settings_fields( 'pmproz_options' ); ?>
@@ -115,13 +115,13 @@ function pmproz_options_validate( $input ) {
 function pmproz_settings_general() {
 	$pmproz_options = PMPro_Zapier::get_options();
 	?>
-	<p><?php esc_attr_e( 'This information will be used when connecting to a Paid Memberships Pro account in Zapier.', 'pmpro-zapier' ); ?></p>
+	<p><?php esc_html_e( 'This information will be used when connecting to a Paid Memberships Pro account in Zapier.', 'pmpro-zapier' ); ?></p>
 	<table class="form-table">
 		<tr>
-			<th scope="row"><?php esc_attr_e( 'Webhook Handler', 'pmpro-zapier' ); ?></th>
+			<th scope="row"><?php esc_html_e( 'Webhook Handler', 'pmpro-zapier' ); ?></th>
 			<td>
 				<input type="text" readonly size="80" value="<?php echo esc_attr( PMPro_Zapier::get_webhook_url() ); ?>"><br/>
-				<small><?php esc_attr_e( 'This is the Webhook URL used when passing data from Zapier to Paid Memberships Pro.', 'pmpro-zapier' ); ?></small>
+				<small><?php esc_html_e( 'This is the Webhook URL used when passing data from Zapier to Paid Memberships Pro.', 'pmpro-zapier' ); ?></small>
 			</td>
 		</tr>
 	</table>
@@ -147,7 +147,7 @@ function pmproz_list_of_available_actions(){
 			<th scope="row"><?php esc_attr_e( 'change_membership_level', 'pmpro-zapier' ); ?></th>
 			<td>
 				<p><strong><?php echo __( 'Accepted Data', 'pmpro-zapier' ) . ': ' . 'user_email, level_id.'; ?></strong></p>
-				<p><?php _e( "This requires the user to exist on your WordPress site. This will change the user's membership level or assign a level if they do not have an active level.", 'pmpro-zapier' ); ?></p>
+				<p><?php esc_html_e( "This requires the user to exist on your WordPress site. This will change the user's membership level or assign a level if they do not have an active level.", 'pmpro-zapier' ); ?></p>
 			</td>
 		</tr>
 
@@ -156,7 +156,7 @@ function pmproz_list_of_available_actions(){
 			<th scope="row"><?php esc_attr_e( 'add_order', 'pmpro-zapier' ); ?></th>
 			<td>
 				<p><strong><?php echo __( 'Accepted Data', 'pmpro-zapier' ) . ': ' . 'user_email, level_id, subtotal, tax, couponamount, total, payment_type, cardtype, accountnumber, expirationmonth, expirationyear, status, gateway, gateway_environment, payment_transaction_id, subscription_transaction_id, affiliate_id, affiliate_subid, notes, checkout_id, billing_name, billing_street, billing_city, billing_state, billing_zip, billing_country, billing_phone.'; ?></strong></p>
-				<p><?php _e( "This will create a new Paid Memberships Pro order for a user.", 'pmpro-zapier' ); ?></p>
+				<p><?php esc_html_e( "This will create a new Paid Memberships Pro order for a user.", 'pmpro-zapier' ); ?></p>
 			</td>
 		</tr>
 
@@ -164,8 +164,8 @@ function pmproz_list_of_available_actions(){
 		<tr>
 			<th scope="row"><?php esc_attr_e( 'update_order', 'pmpro-zapier' ); ?></th>
 			<td>
-				<p><strong><?php _e( 'Accepted Data: user_email, level_id, subtotal, tax, couponamount, total, payment_type, cardtype, accountnumber, expirationmonth, expirationyear, status, gateway, gateway_environment, payment_transaction_id, subscription_transaction_id, affiliate_id, affiliate_subid, notes, checkout_id, billing_name, billing_street, billing_city, billing_state, billing_zip, billing_country, billing_phone.', 'pmpro-zapier' ); ?></strong></p>
-				<p><?php _e( 'This will update an existing Paid Memberships Pro order.', 'pmpro-zapier' ); ?></p>
+				<p><strong><?php esc_html_e( 'Accepted Data: user_email, level_id, subtotal, tax, couponamount, total, payment_type, cardtype, accountnumber, expirationmonth, expirationyear, status, gateway, gateway_environment, payment_transaction_id, subscription_transaction_id, affiliate_id, affiliate_subid, notes, checkout_id, billing_name, billing_street, billing_city, billing_state, billing_zip, billing_country, billing_phone.', 'pmpro-zapier' ); ?></strong></p>
+				<p><?php esc_html_e( 'This will update an existing Paid Memberships Pro order.', 'pmpro-zapier' ); ?></p>
 			</td>
 		</tr>
 
@@ -173,8 +173,8 @@ function pmproz_list_of_available_actions(){
 		<tr>
 			<th scope="row"><?php esc_attr_e( 'has_membership_level', 'pmpro-zapier' ); ?></th>
 			<td>
-				<p><strong><?php _e( 'Accepted Data: user_email, level_id.', 'pmpro-zapier' ); ?></strong></p>
-				<p><?php _e( "Check if an existing user currently has an active membership level.", 'pmpro-zapier' ); ?></p>
+				<p><strong><?php esc_html_e( 'Accepted Data: user_email, level_id.', 'pmpro-zapier' ); ?></strong></p>
+				<p><?php esc_html_e( 'Check if an existing user currently has an active membership level.', 'pmpro-zapier' ); ?></p>
 			</td>
 		</tr>
 	</table>
@@ -207,7 +207,7 @@ function pmproz_settings_field_pmpro_added_order() {
 	?>
 	<label for="pmpro_added_order">
 		<input type="checkbox" value=1 name="pmproz_options[pmpro_added_order]" id="pmpro_added_order" <?php checked( $value ); ?>>
-		<?php esc_attr_e( 'Update Zapier when a new order is added.', 'pmpro-zapier' ); ?>
+		<?php esc_html_e( 'Update Zapier when a new order is added.', 'pmpro-zapier' ); ?>
 	</label>
 	<?php
 }
@@ -232,7 +232,7 @@ function pmproz_settings_field_pmpro_updated_order() {
 	?>
 	<label for="pmpro_updated_order">
 		<input type="checkbox" value=1 name="pmproz_options[pmpro_updated_order]" id="pmpro_updated_order" <?php checked( $value ); ?>>
-		<?php esc_attr_e( 'Update Zapier when an order is updated.', 'pmpro-zapier' ); ?>
+		<?php esc_html_e( 'Update Zapier when an order is updated.', 'pmpro-zapier' ); ?>
 	</label>
 	<?php
 }
@@ -257,7 +257,7 @@ function pmproz_settings_field_pmpro_after_change_membership_level() {
 	?>
 	<label for="pmpro_after_change_membership_level">
 		<input type="checkbox" value=1 name="pmproz_options[pmpro_after_change_membership_level]" id="pmpro_after_change_membership_level" <?php checked( $value ); ?>>
-		<?php _e( 'Update Zapier when a user changes membership levels. The old level status will be added if available.', 'pmpro-zapier' ); ?>
+		<?php esc_html_e( 'Update Zapier when a user changes membership levels. The old level status will be added if available.', 'pmpro-zapier' ); ?>
 	</label>
 	<?php
 }
