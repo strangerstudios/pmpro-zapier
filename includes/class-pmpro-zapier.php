@@ -92,7 +92,10 @@ class PMPro_Zapier {
 
 		$data['order'] = $order;
     
-    $data['date'] = date( get_option( 'date_format' ), $order->timestamp );
+    	$data['date'] = date( get_option( 'date_format' ), $order->timestamp );
+
+    	$data['first_name'] = $order->FirstName;
+    	$data['last_name'] = $order->LastName;
 
 		// filter the data before we send it to Zapier
 		$data = apply_filters('pmproz_added_order_data', $data, $order, $order->user_id );
@@ -131,9 +134,12 @@ class PMPro_Zapier {
 
 		$data['order'] = $order;
     
-    $data['date'] = date( get_option( 'date_format' ), $order->timestamp );
+	    $data['date'] = date( get_option( 'date_format' ), $order->timestamp );
 
-    // filter the data before we send it to Zapier
+	    $data['first_name'] = $order->FirstName;
+    	$data['last_name'] = $order->LastName;
+    	
+	    // filter the data before we send it to Zapier
 		$data = apply_filters('pmproz_updated_order_data', $data, $order, $order->user_id );
 
 		$zap = new PMPro_Zapier();
@@ -185,7 +191,7 @@ class PMPro_Zapier {
 		$data['user_id']    = $user_id;
 		$data['username']   = $user->user_login;
 		$data['user_email'] = $user->user_email;
-
+		
 		// Get old level's status so we know why they changed levels.
 		$sqlQuery                 = "SELECT status FROM {$wpdb->pmpro_memberships_users} WHERE user_id = {$user_id} AND status NOT LIKE 'active' ORDER BY id DESC LIMIT 1";
 		$data['old_level_status'] = $wpdb->get_var( $sqlQuery );
