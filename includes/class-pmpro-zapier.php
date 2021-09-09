@@ -39,8 +39,14 @@ class PMPro_Zapier {
 	static function get_options() {
 		$options = get_option( 'pmproz_options' );
 
+		if( !empty( $_REQUEST['pmproz_generate_api_key'] ) && current_user_can( 'manage_options' ) ){
+			$can_generate = true;
+		} else {
+			$can_generate = false;
+		}
+
 		// generate an API key if we don't have one yet
-		if ( empty( $options['api_key'] ) ) {
+		if ( empty( $options['api_key'] ) || $can_generate ) {
 			$options['api_key'] = wp_generate_password( 32, false );
 			PMPro_Zapier::update_options( $options );
 		}
