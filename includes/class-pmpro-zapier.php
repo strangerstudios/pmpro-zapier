@@ -99,10 +99,7 @@ class PMPro_Zapier {
 		$data['order'] = $order;
     
     	$data['date'] = date_i18n( get_option( 'date_format' ), $order->timestamp );
-
-    	$data['first_name'] = $order->FirstName;
-    	$data['last_name'] = $order->LastName;
-
+    	
 		// filter the data before we send it to Zapier
 		$data = apply_filters('pmproz_added_order_data', $data, $order, $order->user_id );
 
@@ -140,10 +137,7 @@ class PMPro_Zapier {
 
 		$data['order'] = $order;
     
-	    $data['date'] = date_i18n( get_option( 'date_format' ), $order->timestamp );
-
-	    $data['first_name'] = $order->FirstName;
-    	$data['last_name'] = $order->LastName;
+	    $data['date'] = date_i18n( get_option( 'date_format' ), $order->timestamp );	   
     	
 	    // filter the data before we send it to Zapier
 		$data = apply_filters('pmproz_updated_order_data', $data, $order, $order->user_id );
@@ -250,6 +244,21 @@ class PMPro_Zapier {
 		}
 
 		$data['order'] = $order;
+
+		$data['first_name'] = "";
+		$data['last_name'] = "";
+
+		if( !empty( $_REQUEST['bfirstname'] ) ) {
+			$data['first_name'] = sanitize_text_field( $_REQUEST['bfirstname'] );
+		} else if ( !empty( $_REQUEST['first_name'] ) ) {
+			$data['first_name'] = sanitize_text_field( $_REQUEST['first_name'] );
+		}
+		
+		if( !empty( $_REQUEST['blastname'] ) ) {
+			$data['last_name'] = sanitize_text_field( $_REQUEST['blastname'] );
+		} else if ( !empty( $_REQUEST['last_name'] ) ) {
+			$data['last_name'] = sanitize_text_field( $_REQUEST['last_name'] );
+		}
 
 		$data = apply_filters( 'pmproz_after_checkout_data', $data, $user_id, $level, $order );
 
