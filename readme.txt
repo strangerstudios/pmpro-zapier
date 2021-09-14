@@ -2,8 +2,8 @@
 Contributors: strangerstudios
 Tags: paid memberships pro, pmpro, zapier
 Requires at least: 4.7
-Tested up to: 5.7.2
-Stable tag: 1.1.1
+Tested up to: 5.8.1
+Stable tag: 1.2.0
 
 Integrate activity on your membership site with thousands of other apps via Zapier.
 
@@ -152,6 +152,13 @@ Please post it in the issues section of GitHub and we'll fix it as soon as we ca
 Please visit our premium support site at http://www.paidmembershipspro.com for more documentation and our support forums.
 
 == Changelog ==
+
+= 1.2.0 - 2021-014-09 =
+* ENHANCEMENT: Add first_name and last_name variables to after checkout trigger.
+* ENHANCEMENT: Added functionality to regenerate api key as admin. Add ?pmproz_generate_api_key=1 to a URL while logged-in as admin to regenerate api key.
+* ENHANCEMENT: Added localized date function. Date formats are now translatable.
+* ENHANCEMENT: Improved localization for missing strings and wrong text domains. 
+* BUG FIX: Fixed an issue where the API key was regenerating whenever settings were saved.
 
 = 1.1.1 - 2021-06-09 =
 * NOTE: Bumping version to 1.1.1 to force update for users who have a broken 1.1 version.
