@@ -62,8 +62,8 @@ add_filter( 'plugin_action_links_' . PMPRO_ZAPIER_BASENAME, 'pmproz_plugin_actio
 function pmproz_plugin_row_meta( $links, $file ) {
 	if ( strpos( $file, 'pmpro-zapier.php' ) !== false ) {
 		$new_links = array(
-			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/add-ons/pmpro-zapier/' ) . '" title="' . esc_attr( __( 'View Documentation', 'pmpro' ) ) . '">' . __( 'Docs', 'pmpro-zapier' ) . '</a>',
-			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/support/' ) . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'pmpro' ) ) . '">' . __( 'Support', 'pmpro-zapier' ) . '</a>',
+			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/add-ons/pmpro-zapier/' ) . '" title="' . esc_attr( __( 'View Documentation', 'pmpro-zapier' ) ) . '">' . __( 'Docs', 'pmpro-zapier' ) . '</a>',
+			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/support/' ) . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'pmpro-zapier' ) ) . '">' . __( 'Support', 'pmpro-zapier' ) . '</a>',
 		);
 		$links     = array_merge( $links, $new_links );
 	}
