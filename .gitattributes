@@ -1,3 +1,10 @@
+# Items to ignore when downloading a zip
+
+# Files
 .gitattributes export-ignore
-.github export-ignore
 pmpro-zapier-banner.png export-ignore
+README.md export-ignore
+
+# Folders
+.github export-ignore
+.wordpress-org export-ignore
