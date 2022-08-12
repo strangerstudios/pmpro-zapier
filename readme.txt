@@ -1,8 +1,8 @@
 === Paid Memberships Pro - Zapier Add On ===
 Contributors: strangerstudios
 Tags: paid memberships pro, pmpro, zapier
-Requires at least: 4.7
-Tested up to: 5.8.1
+Requires at least: 5.0
+Tested up to: 6.0
 Stable tag: 1.2.0
 
 Integrate activity on your membership site with thousands of other apps via Zapier.
@@ -153,7 +153,11 @@ Please visit our premium support site at http://www.paidmembershipspro.com for m
 
 == Changelog ==
 
-= 1.2.0 - 2021-014-09 =
+= 1.2.1 - 2022-08-12 =
+* ENHANCEMENT: New filter `pmproz_prepare_order_for_request` added to allow manipulating the $order data that is sent with every trigger.
+* BUG FIX: Fixes an issue where order data would be blank in Zapier and similar services. Improved compatibility with v2.9+ of Paid Memberships Pro.
+
+= 1.2.0 - 2021-14-09 =
 * ENHANCEMENT: Add first_name and last_name variables to after checkout trigger.
 * ENHANCEMENT: Added functionality to regenerate api key as admin. Add ?pmproz_generate_api_key=1 to a URL while logged-in as admin to regenerate api key.
 * ENHANCEMENT: Added localized date function. Date formats are now translatable.
