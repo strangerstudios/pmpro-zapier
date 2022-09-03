@@ -82,13 +82,6 @@ class PMPro_Zapier {
 		// Get the saved order.
 		$order = new MemberOrder( $order->id );
 
-		// Remove redundant and unnecessary things.
-		unset( $order->ExpirationDate );
-		unset( $order->ExpirationDate_YdashM );
-		unset( $order->Gateway );
-		unset( $order->paypal_token );
-		unset( $order->session_id );
-
 		// Add some extra data to the result.
 		$data = array();
 
@@ -96,7 +89,7 @@ class PMPro_Zapier {
 
 		$data['username'] = $user->user_login;
 
-		$data['order'] = $order;
+		$data['order'] = self::prepare_order_for_request( $order );
     
     	$data['date'] = date_i18n( get_option( 'date_format' ), $order->timestamp );
     	
@@ -121,13 +114,6 @@ class PMPro_Zapier {
 		// Get the updated order.
 		$order = new MemberOrder( $order->id );
 
-		// Remove redundant and unnecessary things.
-		unset( $order->ExpirationDate );
-		unset( $order->ExpirationDate_YdashM );
-		unset( $order->Gateway );
-		unset( $order->paypal_token );
-		unset( $order->session_id );
-
 		// Add some extra data to the result.
 		$data = array();
 
@@ -135,7 +121,7 @@ class PMPro_Zapier {
 
 		$data['username'] = $user->user_login;
 
-		$data['order'] = $order;
+		$data['order'] = self::prepare_order_for_request( $order );
     
 	    $data['date'] = date_i18n( get_option( 'date_format' ), $order->timestamp );	   
     	
@@ -233,17 +219,10 @@ class PMPro_Zapier {
 		}
 
 		if ( ! empty( $order ) ) {
-			unset( $order->ExpirationDate );
-			unset( $order->ExpirationDate_YdashM );
-			unset( $order->Gateway );
-			unset( $order->paypal_token );
-			unset( $order->session_id );
-			unset( $order->sqlQuery );
-
 			$data['date'] = date_i18n( get_option( 'date_format' ), $order->timestamp );
 		}
 
-		$data['order'] = $order;
+		$data['order'] = self::prepare_order_for_request( $order );
 
 		$data['first_name'] = "";
 		$data['last_name'] = "";
@@ -294,5 +273,40 @@ class PMPro_Zapier {
 		}
 
 		return $r;
+	}
+
+	/**
+	 * Build a copy of a MemberOrder object to send to Zapier.
+	 *
+	 * @param MemberOrder $order The order object to copy.
+	 * @return Object The copied order object.
+	 */
+	private static function prepare_order_for_request( $order ) {
+		$prepared_order = new stdClass();
+		$prepared_order->id = $order->id;
+		$prepared_order->code = $order->code;
+		$prepared_order->user_id = $order->user_id;
+		$prepared_order->membership_id = $order->membership_id;
+		$prepared_order->billing = $order->billing;
+		$prepared_order->subtotal = $order->subtotal;
+		$prepared_order->tax = $order->tax;
+		$prepared_order->total = $order->total;
+		$prepared_order->payment_type = $order->payment_type;
+		$prepared_order->cardtype = $order->cardtype;
+		$prepared_order->accountnumber = $order->accountnumber;
+		$prepared_order->expirationmonth = $order->expirationmonth;
+		$prepared_order->expirationyear = $order->expirationyear;
+		$prepared_order->status = $order->status;
+		$prepared_order->gateway = $order->gateway;
+		$prepared_order->gateway_environment = $order->gateway_environment;
+		$prepared_order->payment_transaction_id = $order->payment_transaction_id;
+		$prepared_order->subscription_transaction_id = $order->subscription_transaction_id;
+		$prepared_order->timestamp = $order->timestamp;
+		$prepared_order->affiliate_id = $order->affiliate_id;
+		$prepared_order->affiliate_subid = $order->affiliate_subid;
+		$prepared_order->notes = $order->notes;
+		$prepared_order->checkout_id = $order->checkout_id;
+		
+		return apply_filters( 'pmproz_prepare_order_for_request', $prepared_order, $order );
 	}
 }
