@@ -91,11 +91,11 @@ switch ( $action ) {
 			$user_id = $user->ID;
 		}
 
-		// make sure we have a user and he or she doesn't have a membership level already
+		// make sure we have a user and he or she doesn't have the membership level already
 		if ( empty( $user_id ) ) {
 			$pmpro_error .= __( 'User creation failed.', 'pmpro-zapier' );
-		} elseif ( pmpro_hasMembershipLevel( null, $user_id ) ) {
-			$pmpro_error .= __( 'This user already has a membership level.', 'pmpro-zapier' );
+		} elseif ( pmpro_hasMembershipLevel( $level_id, $user_id ) ) {
+			$pmpro_error .= __( 'This user already has the membership level.', 'pmpro-zapier' );
 		}
 
 		// check the level
