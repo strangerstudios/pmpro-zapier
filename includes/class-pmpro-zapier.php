@@ -88,6 +88,7 @@ class PMPro_Zapier {
 		$user = get_userdata( $order->user_id );
 
 		$data['username'] = $user->user_login;
+		$data['user_email'] = $user->user_email;
 
 		$data['order'] = self::prepare_order_for_request( $order );
     
@@ -120,6 +121,8 @@ class PMPro_Zapier {
 		$user = get_userdata( $order->user_id );
 
 		$data['username'] = $user->user_login;
+		$data['user_email'] = $user->user_email;
+
 
 		$data['order'] = self::prepare_order_for_request( $order );
     
