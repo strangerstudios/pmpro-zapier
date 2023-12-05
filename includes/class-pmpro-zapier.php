@@ -88,6 +88,7 @@ class PMPro_Zapier {
 		$user = get_userdata( $order->user_id );
 
 		$data['username'] = $user->user_login;
+		$data['user_email'] = $user->user_email;
 
 		$data['order'] = self::prepare_order_for_request( $order );
     
@@ -120,6 +121,8 @@ class PMPro_Zapier {
 		$user = get_userdata( $order->user_id );
 
 		$data['username'] = $user->user_login;
+		$data['user_email'] = $user->user_email;
+
 
 		$data['order'] = self::prepare_order_for_request( $order );
     
@@ -153,8 +156,7 @@ class PMPro_Zapier {
 			$level     = new StdClass();
 			$level->ID = '0';
 		} else {
-			$level = pmpro_getMembershipLevelForUser( $user_id );
-
+			$level = clone pmpro_getSpecificMembershipLevelForUser( $user_id, $level_id ); // Clone since we're going to modify the level object.
 			// Unset some unnecessary things.
 			unset( $level->allow_signups );
 			unset( $level->categories );
@@ -179,8 +181,12 @@ class PMPro_Zapier {
 		$data['user_email'] = $user->user_email;
 		
 		// Get old level's status so we know why they changed levels.
-		$sqlQuery                 = "SELECT status FROM {$wpdb->pmpro_memberships_users} WHERE user_id = {$user_id} AND status NOT LIKE 'active' ORDER BY id DESC LIMIT 1";
-		$data['old_level_status'] = $wpdb->get_var( $sqlQuery );
+		if ( ! empty( $cancel_level ) ) {
+			$data['old_level_status'] = $wpdb->get_var( $wpdb->prepare( "SELECT status FROM {$wpdb->pmpro_memberships_users} WHERE user_id = %d AND membership_id = %d AND status NOT LIKE 'active' ORDER BY id LIMIT 1", $user_id, $cancel_level ) );
+		}
+		if ( empty( $data['old_level_status'] ) ) {
+			$data['old_level_status'] = '';
+		}
 
 		$data['level'] = $level;
 
@@ -212,7 +218,7 @@ class PMPro_Zapier {
 		$data['username']   = $user->user_login;
 		$data['user_email'] = $user->user_email;
 
-		$level = pmpro_getMembershipLevelForUser( $user_id );
+		$level = clone pmpro_getSpecificMembershipLevelForUser( $user_id, $order->membership_id ); // Clone since we're going to modify the level object.
 		if ( ! empty( $level ) ) {
 			$data['level_id'] = $level->id;
 			$data['level_name'] = $level->name;

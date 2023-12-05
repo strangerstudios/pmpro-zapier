@@ -48,8 +48,9 @@ function pmproz_plugin_action_links( $links ) {
 		$new_links = array(
 			'<a href="' . get_admin_url( null, 'admin.php?page=pmpro-zapier' ) . '">' . __( 'Settings', 'pmpro-zapier' ) . '</a>',
 		);
+        	$links = array_merge( $links, $new_links );
 	}
-	return array_merge( $links, $new_links );
+	return $links;
 }
 add_filter( 'plugin_action_links_' . PMPRO_ZAPIER_BASENAME, 'pmproz_plugin_action_links' );
 
