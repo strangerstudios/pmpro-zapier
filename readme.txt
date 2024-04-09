@@ -2,7 +2,7 @@
 Contributors: strangerstudios, paidmembershipspro
 Tags: paid memberships pro, pmpro, zapier
 Requires at least: 5.2
-Tested up to: 6.4.1
+Tested up to: 6.5
 Stable tag: 1.2.2
 
 Integrate activity on your membership site with thousands of other apps via Zapier.
