@@ -3,7 +3,7 @@
 # [Paid Memberships Pro – Zapier Add On](https://www.paidmembershipspro.com/add-ons/pmpro-zapier/) #
 [comment]: # (Generate badges from shields.io, only works for .org plugins to get other stats etc. We'd have to create our own endpoints for Premium plugins)
 
-![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dy/pmpro-zapier?style=flat-square) ![License](https://img.shields.io/badge/license-GPL--2.0%2B-red.svg?style=flat-square)
+![License](https://img.shields.io/badge/license-GPL--2.0%2B-red.svg?style=flat-square)
 
 ### Welcome to the Paid Memberships Pro – Zapier Add On GitHub Repository
 Integrate activity on your membership site with thousands of other apps via Zapier (requires Paid Memberships Pro).
@@ -37,4 +37,4 @@ Here are some ways for **non-developers to contribute** to Paid Memberships Pro 
 
 1. Translate Paid Memberships Pro – Zapier Add On into your own [language](https://www.paidmembershipspro.com/paid-memberships-pro-in-your-language/).
 2. [Purchase a plus membership](https://paidmembershipspro.com/pricing) to help fund ongoing development and bug fixes.
-3. Leave an honest review for [Paid Memberships Pro – Zapier Add On](https://wordpress.org/support/plugin/pmpro-zapier/reviews/#new-post).
+3. Leave an honest review for [Paid Memberships Pro – Zapier Add On](https://www.paidmembershipspro.com/submit-testimonial/).

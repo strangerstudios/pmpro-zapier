@@ -2,8 +2,8 @@
 Contributors: strangerstudios, paidmembershipspro
 Tags: paid memberships pro, pmpro, zapier
 Requires at least: 5.2
-Tested up to: 6.5
-Stable tag: 1.2.2
+Tested up to: 6.6
+Stable tag: 1.2.3
 
 Integrate activity on your membership site with thousands of other apps via Zapier.
 
@@ -152,6 +152,9 @@ Please post it in the issues section of GitHub and we'll fix it as soon as we ca
 Please visit our premium support site at http://www.paidmembershipspro.com for more documentation and our support forums.
 
 == Changelog ==
+= 1.2.3 - 2024-10-18 =
+* ENHANCEMENT: Added Dutch language files.
+
 = 1.2.2 - 2023-12-05 =
 * ENHANCEMENT: Improved compatibility with Multiple Memberships Per User (@dparker1005)
 
