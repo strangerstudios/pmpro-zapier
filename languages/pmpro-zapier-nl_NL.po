@@ -1,15 +1,18 @@
-# Translation of Plugins - Paid Memberships Pro &#8211; Zapier Add On - Stable (latest release) in Dutch
-# This file is distributed under the same license as the Plugins - Paid Memberships Pro &#8211; Zapier Add On - Stable (latest release) package.
+# Copyright (C) 2024 Paid Memberships Pro
+# This file is distributed under the same license as the Paid Memberships Pro - Zapier Add On plugin.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-12-05 15:51:57+0000\n"
+"Project-Id-Version: Paid Memberships Pro - Zapier Add On 1.2.3\n"
+"Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
+"Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
+"Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/4.0.1\n"
-"Language: nl\n"
-"Project-Id-Version: Plugins - Paid Memberships Pro &#8211; Zapier Add On - Stable (latest release)\n"
+"POT-Creation-Date: 2024-10-18T08:39:40+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: pmpro-zapier\n"
 
 #: includes/settings.php:288
 msgid "Update Zapier after a user signs up. Occurs for initial signups / manual renewals only."
@@ -24,18 +27,22 @@ msgid "After Checkout"
 msgstr "Na het afrekenen"
 
 #. Author URI of the plugin
+#: pmpro-zapier.php
 msgid "https://www.paidmembershipspro.com"
 msgstr "https://www.paidmembershipspro.com"
 
 #. Author of the plugin
+#: pmpro-zapier.php
 msgid "Paid Memberships Pro"
 msgstr "Paid Memberships Pro"
 
 #. Description of the plugin
+#: pmpro-zapier.php
 msgid "Integrate activity on your membership site with thousands of other apps via Zapier."
 msgstr "Integreer activiteit op je lidmaatschapssite met duizenden andere apps via Zapier."
 
 #. Plugin URI of the plugin
+#: pmpro-zapier.php
 msgid "https://www.paidmembershipspro.com/add-ons/pmpro-zapier/"
 msgstr "https://www.paidmembershipspro.com/add-ons/pmpro-zapier/"
 
@@ -55,7 +62,8 @@ msgstr "Je moet een nieuwe level_id of 0 invullen."
 msgid "You must pass in a user_id, user_login, or user_email."
 msgstr "Je moet een user_id, user_login of user_email invoeren."
 
-#: includes/webhook-handler.php:109 includes/webhook-handler.php:147
+#: includes/webhook-handler.php:109
+#: includes/webhook-handler.php:147
 msgid "changed level"
 msgstr "veranderd niveau"
 
@@ -155,7 +163,8 @@ msgstr "Als de gebruiker bestaat en geen lid is, wijs je een lidmaatschapsniveau
 msgid "Creates a new user if an account does not exist and assigns a membership level."
 msgstr "Maakt een nieuwe gebruiker aan als er geen account bestaat en kent een lidmaatschapsniveau toe."
 
-#: includes/settings.php:139 includes/settings.php:149
+#: includes/settings.php:139
+#: includes/settings.php:149
 #: includes/settings.php:158
 msgid "Accepted Data"
 msgstr "Geaccepteerde gegevens"
@@ -234,6 +243,7 @@ msgstr "Integreer activiteit op je lidmaatschapssite met duizenden andere apps v
 
 #. Plugin Name of the plugin
 #: includes/settings.php:20
+#: pmpro-zapier.php
 msgid "Paid Memberships Pro - Zapier Add On"
 msgstr "Paid Memberships Pro - Zapier Add On"
 

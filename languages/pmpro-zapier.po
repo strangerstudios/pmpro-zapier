@@ -1,37 +1,42 @@
-# Copyright (C) 2021 Paid Memberships Pro
+# Copyright (C) 2024 Paid Memberships Pro
 # This file is distributed under the same license as the Paid Memberships Pro - Zapier Add On plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Paid Memberships Pro - Zapier Add On 1.2.0\n"
+"Project-Id-Version: Paid Memberships Pro - Zapier Add On 1.2.3\n"
 "Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
 "Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-09-09T11:02:00+00:00\n"
+"POT-Creation-Date: 2024-10-18T08:39:40+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.5.0\n"
+"X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: pmpro-zapier\n"
 
 #. Plugin Name of the plugin
 #: includes/settings.php:20
+#: pmpro-zapier.php
 msgid "Paid Memberships Pro - Zapier Add On"
 msgstr ""
 
 #. Plugin URI of the plugin
+#: pmpro-zapier.php
 msgid "https://www.paidmembershipspro.com/add-ons/pmpro-zapier/"
 msgstr ""
 
 #. Description of the plugin
+#: pmpro-zapier.php
 msgid "Integrate activity on your membership site with thousands of other apps via Zapier."
 msgstr ""
 
 #. Author of the plugin
+#: pmpro-zapier.php
 msgid "Paid Memberships Pro"
 msgstr ""
 
 #. Author URI of the plugin
+#: pmpro-zapier.php
 msgid "https://www.paidmembershipspro.com"
 msgstr ""
 
@@ -44,22 +49,27 @@ msgid "Settings"
 msgstr ""
 
 #: includes/admin.php:65
+#: includes/admin.php:66
 msgid "View Documentation"
 msgstr ""
 
 #: includes/admin.php:65
+#: includes/admin.php:66
 msgid "Docs"
 msgstr ""
 
 #: includes/admin.php:66
+#: includes/admin.php:67
 msgid "Visit Customer Support Forum"
 msgstr ""
 
 #: includes/admin.php:66
+#: includes/admin.php:67
 msgid "Support"
 msgstr ""
 
 #: includes/class-pmpro-zapier.php:272
+#: includes/class-pmpro-zapier.php:278
 msgid "An error occurred: "
 msgstr ""
 
@@ -210,18 +220,22 @@ msgid "Check if an existing user currently has an active membership level."
 msgstr ""
 
 #: includes/settings.php:210
+#: includes/settings.php:213
 msgid "Update Zapier when a new order is added."
 msgstr ""
 
 #: includes/settings.php:235
+#: includes/settings.php:238
 msgid "Update Zapier when an order is updated."
 msgstr ""
 
 #: includes/settings.php:260
+#: includes/settings.php:263
 msgid "Update Zapier when a user changes membership levels. The old level status will be added if available."
 msgstr ""
 
 #: includes/settings.php:285
+#: includes/settings.php:288
 msgid "Update Zapier after a user signs up. Occurs for initial signups / manual renewals only."
 msgstr ""
 
@@ -276,4 +290,8 @@ msgstr ""
 
 #: includes/webhook-handler.php:366
 msgid "Zapier Log"
+msgstr ""
+
+#: includes/webhook-handler.php:98
+msgid "This user already has the membership level."
 msgstr ""
