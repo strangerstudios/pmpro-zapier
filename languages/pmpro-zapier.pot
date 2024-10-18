@@ -1,37 +1,42 @@
-# Copyright (C) 2023 Paid Memberships Pro
+# Copyright (C) 2024 Paid Memberships Pro
 # This file is distributed under the same license as the Paid Memberships Pro - Zapier Add On plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Paid Memberships Pro - Zapier Add On 1.2.2\n"
+"Project-Id-Version: Paid Memberships Pro - Zapier Add On 1.2.3\n"
 "Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
 "Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-12-05T10:12:14+00:00\n"
+"POT-Creation-Date: 2024-10-18T08:39:40+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.9.0\n"
+"X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: pmpro-zapier\n"
 
 #. Plugin Name of the plugin
+#: pmpro-zapier.php
 #: includes/settings.php:20
 msgid "Paid Memberships Pro - Zapier Add On"
 msgstr ""
 
 #. Plugin URI of the plugin
+#: pmpro-zapier.php
 msgid "https://www.paidmembershipspro.com/add-ons/pmpro-zapier/"
 msgstr ""
 
 #. Description of the plugin
+#: pmpro-zapier.php
 msgid "Integrate activity on your membership site with thousands of other apps via Zapier."
 msgstr ""
 
 #. Author of the plugin
+#: pmpro-zapier.php
 msgid "Paid Memberships Pro"
 msgstr ""
 
 #. Author URI of the plugin
+#: pmpro-zapier.php
 msgid "https://www.paidmembershipspro.com"
 msgstr ""
 

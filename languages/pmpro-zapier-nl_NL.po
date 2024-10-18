@@ -1,0 +1,284 @@
+# Copyright (C) 2024 Paid Memberships Pro
+# This file is distributed under the same license as the Paid Memberships Pro - Zapier Add On plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Paid Memberships Pro - Zapier Add On 1.2.3\n"
+"Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
+"Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
+"Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-10-18T08:39:40+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: pmpro-zapier\n"
+
+#: includes/settings.php:288
+msgid "Update Zapier after a user signs up. Occurs for initial signups / manual renewals only."
+msgstr "Update Zapier nadat een gebruiker zich heeft aangemeld. Komt alleen voor bij eerste aanmeldingen / handmatige verlengingen."
+
+#: includes/settings.php:79
+msgid "After Checkout Webhook URL"
+msgstr "Na afrekenen Webhook URL"
+
+#: includes/settings.php:78
+msgid "After Checkout"
+msgstr "Na het afrekenen"
+
+#. Author URI of the plugin
+#: pmpro-zapier.php
+msgid "https://www.paidmembershipspro.com"
+msgstr "https://www.paidmembershipspro.com"
+
+#. Author of the plugin
+#: pmpro-zapier.php
+msgid "Paid Memberships Pro"
+msgstr "Paid Memberships Pro"
+
+#. Description of the plugin
+#: pmpro-zapier.php
+msgid "Integrate activity on your membership site with thousands of other apps via Zapier."
+msgstr "Integreer activiteit op je lidmaatschapssite met duizenden andere apps via Zapier."
+
+#. Plugin URI of the plugin
+#: pmpro-zapier.php
+msgid "https://www.paidmembershipspro.com/add-ons/pmpro-zapier/"
+msgstr "https://www.paidmembershipspro.com/add-ons/pmpro-zapier/"
+
+#: includes/webhook-handler.php:366
+msgid "Zapier Log"
+msgstr "Zapier Log"
+
+#: includes/webhook-handler.php:345
+msgid "Logged On"
+msgstr "Ingelogd"
+
+#: includes/webhook-handler.php:142
+msgid "You must pass in a new level_id or 0."
+msgstr "Je moet een nieuwe level_id of 0 invullen."
+
+#: includes/webhook-handler.php:137
+msgid "You must pass in a user_id, user_login, or user_email."
+msgstr "Je moet een user_id, user_login of user_email invoeren."
+
+#: includes/webhook-handler.php:109
+#: includes/webhook-handler.php:147
+msgid "changed level"
+msgstr "veranderd niveau"
+
+#: includes/webhook-handler.php:103
+msgid "You must pass in valid level_id."
+msgstr "Je moet een geldig level_id opgeven."
+
+#: includes/webhook-handler.php:98
+msgid "This user already has the membership level."
+msgstr "Deze gebruiker heeft al een lidmaatschap niveau."
+
+#: includes/webhook-handler.php:96
+msgid "User creation failed."
+msgstr "Gebruiker aanmaken is mislukt."
+
+#: includes/webhook-handler.php:54
+msgid "You must pass the user_email parameter to the add_member method."
+msgstr "Je moet de parameter user_email doorgeven aan de methode add_member."
+
+#: includes/webhook-handler.php:35
+msgid "add member called successfully"
+msgstr "Toevoegen lid met succes aangeroepen"
+
+#: includes/webhook-handler.php:28
+msgid "Paid Memberships Pro must be activated."
+msgstr "Paid Memberships Pro moet geactiveerd zijn."
+
+#: includes/webhook-handler.php:24
+msgid "Data Received"
+msgstr "Gegevens ontvangen"
+
+#: includes/webhook-handler.php:20
+msgid "A valid API key is required."
+msgstr "Een geldige API-sleutel is vereist."
+
+#: includes/settings.php:263
+msgid "Update Zapier when a user changes membership levels. The old level status will be added if available."
+msgstr "Werk Zapier bij wanneer een gebruiker van lidmaatschapsniveau verandert. De oude status wordt toegevoegd indien beschikbaar."
+
+#: includes/settings.php:238
+msgid "Update Zapier when an order is updated."
+msgstr "Update Zapier wanneer een bestelling wordt geüpdatet."
+
+#: includes/settings.php:213
+msgid "Update Zapier when a new order is added."
+msgstr "Update Zapier wanneer een nieuwe bestelling wordt toegevoegd."
+
+#: includes/settings.php:177
+msgid "Check if an existing user currently has an active membership level."
+msgstr "Controleer of een bestaande gebruiker momenteel een actief lidmaatschapsniveau heeft."
+
+#: includes/settings.php:176
+msgid "Accepted Data: user_email, level_id."
+msgstr "Geaccepteerde gegevens: user_email, level_id."
+
+#: includes/settings.php:174
+msgid "has_membership_level"
+msgstr "has_membership_level"
+
+#: includes/settings.php:168
+msgid "This will update an existing Paid Memberships Pro order."
+msgstr "Hiermee wordt een bestaande Paid Memberships Pro bestelling bijgewerkt."
+
+#: includes/settings.php:167
+msgid "Accepted Data: user_email, level_id, subtotal, tax, couponamount, total, payment_type, cardtype, accountnumber, expirationmonth, expirationyear, status, gateway, gateway_environment, payment_transaction_id, subscription_transaction_id, affiliate_id, affiliate_subid, notes, checkout_id, billing_name, billing_street, billing_city, billing_state, billing_zip, billing_country, billing_phone."
+msgstr "Geaccepteerde gegevens: user_email, level_id, subtotal, tax, couponamount, total, payment_type, cardtype, accountnumber, expirationmonth, expirationyear, status, gateway, gateway_environment, payment_transaction_id, subscription_transaction_id, affiliate_id, affiliate_subid, notes, checkout_id, billing_name, billing_street, billing_city, billing_state, billing_zip, billing_country, billing_phone."
+
+#: includes/settings.php:165
+msgid "update_order"
+msgstr "update_order"
+
+#: includes/settings.php:159
+msgid "This will create a new Paid Memberships Pro order for a user."
+msgstr "Dit zal een nieuwe Paid Memberships Pro bestelling voor een gebruiker creëren."
+
+#: includes/settings.php:156
+msgid "add_order"
+msgstr "add_order"
+
+#: includes/settings.php:150
+msgid "This requires the user to exist on your WordPress site. This will change the user's membership level or assign a level if they do not have an active level."
+msgstr "Dit vereist dat de gebruiker op je WordPress site staat. Hierdoor wordt het lidmaatschapsniveau van de gebruiker gewijzigd of wordt een niveau toegewezen als deze geen actief niveau heeft."
+
+#: includes/settings.php:147
+msgid "change_membership_level"
+msgstr "change_membership_level"
+
+#: includes/settings.php:142
+msgid "If the user exists and currently has a membership level, no changes will be made to the user."
+msgstr "Als de gebruiker bestaat en momenteel een lidmaatschapsniveau heeft, worden er geen wijzigingen aangebracht aan de gebruiker."
+
+#: includes/settings.php:141
+msgid "If the user exists and is a non-member, assign a membership level to their account."
+msgstr "Als de gebruiker bestaat en geen lid is, wijs je een lidmaatschapsniveau toe aan zijn account."
+
+#: includes/settings.php:140
+msgid "Creates a new user if an account does not exist and assigns a membership level."
+msgstr "Maakt een nieuwe gebruiker aan als er geen account bestaat en kent een lidmaatschapsniveau toe."
+
+#: includes/settings.php:139
+#: includes/settings.php:149
+#: includes/settings.php:158
+msgid "Accepted Data"
+msgstr "Geaccepteerde gegevens"
+
+#: includes/settings.php:137
+msgid "add_member"
+msgstr "add_member"
+
+#: includes/settings.php:133
+msgid "This is a list of available actions when sending data from Zapier to Paid Memberships Pro"
+msgstr "Dit is een lijst met beschikbare acties bij het verzenden van gegevens van Zapier naar Paid Memberships Pro"
+
+#: includes/settings.php:124
+msgid "This is the Webhook URL used when passing data from Zapier to Paid Memberships Pro."
+msgstr "Dit is de Webhook URL die wordt gebruikt bij het doorgeven van gegevens van Zapier aan Paid Memberships Pro."
+
+#: includes/settings.php:121
+msgid "Webhook Handler"
+msgstr "Webhook handler"
+
+#: includes/settings.php:118
+msgid "This information will be used when connecting to a Paid Memberships Pro account in Zapier."
+msgstr "Deze informatie wordt gebruikt wanneer je verbinding maakt met een Paid Memberships Pro account in Zapier."
+
+#: includes/settings.php:88
+msgid "Available Actions"
+msgstr "Beschikbare acties"
+
+#: includes/settings.php:87
+msgid "API Key"
+msgstr "API-sleutel"
+
+#: includes/settings.php:85
+msgid "Account Settings"
+msgstr "Account instellingen"
+
+#: includes/settings.php:77
+msgid "Changed Membership Level Webhook URL"
+msgstr "Webhook URL van lidmaatschapsniveau gewijzigd"
+
+#: includes/settings.php:76
+msgid "Changed Membership Level"
+msgstr "Lidmaatschapsniveau gewijzigd"
+
+#: includes/settings.php:75
+msgid "Updated Order Webhook URL"
+msgstr "Webhook URL voor bestelling bijgewerkt"
+
+#: includes/settings.php:74
+msgid "Updated Order"
+msgstr "Geüpdatet bestelling"
+
+#: includes/settings.php:73
+msgid "New Order Webhook URL"
+msgstr "Nieuwe bestelling Webhook URL"
+
+#: includes/settings.php:72
+msgid "New Order"
+msgstr "Nieuwe bestelling"
+
+#: includes/settings.php:70
+msgid "Triggers"
+msgstr "Triggers"
+
+#: includes/settings.php:39
+msgid "Receive Data From Zapier (Actions)"
+msgstr "Gegevens ontvangen van Zapier (acties)"
+
+#: includes/settings.php:34
+msgid "Send Data to Zapier (Triggers)"
+msgstr "Gegevens verzenden naar Zapier (triggers)"
+
+#: includes/settings.php:21
+msgid "Integrate activity on your membership site with thousands of other apps via Zapier. <a href=\"%s\" target=\"_blank\">Read the documentation</a> for more information about this Add On."
+msgstr "Integreer activiteit op je lidmaatschapssite met duizenden andere apps via Zapier. <a href=\"%s\" target=\"_blank\">Lees de documentatie</a> voor meer informatie over deze add-on."
+
+#. Plugin Name of the plugin
+#: includes/settings.php:20
+#: pmpro-zapier.php
+msgid "Paid Memberships Pro - Zapier Add On"
+msgstr "Paid Memberships Pro - Zapier Add On"
+
+#: includes/settings.php:7
+msgid "PMPro Zapier"
+msgstr "PMPro Zapier"
+
+#: includes/settings.php:7
+msgid "Zapier Settings - Paid Memberships Pro"
+msgstr "Zapier instellingen - Paid Memberships Pro"
+
+#: includes/class-pmpro-zapier.php:278
+msgid "An error occurred: "
+msgstr "Er is een fout opgetreden: "
+
+#: includes/admin.php:67
+msgid "Support"
+msgstr "Ondersteuning"
+
+#: includes/admin.php:67
+msgid "Visit Customer Support Forum"
+msgstr "Bezoek het klantondersteuningsforum"
+
+#: includes/admin.php:66
+msgid "Docs"
+msgstr "Documentatie"
+
+#: includes/admin.php:66
+msgid "View Documentation"
+msgstr "Bekijk documentatie"
+
+#: includes/admin.php:49
+msgid "Settings"
+msgstr "Instellingen"
+
+#: includes/admin.php:32
+msgid "Thank you for activating. <a href=\"%s\">Visit the settings page</a> to get started with the Zapier Add On."
+msgstr "Bedankt voor je activatie. <a href=\"%s\">Bezoek de instellingenpagina</a> om aan de slag te gaan met de Zapier add-on."
