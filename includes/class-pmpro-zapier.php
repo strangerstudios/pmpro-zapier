@@ -82,6 +82,9 @@ class PMPro_Zapier {
 		// Get the saved order.
 		$order = new MemberOrder( $order->id );
 
+		// Add discount code data to order.
+		$order->getDiscountCode();
+
 		// Add some extra data to the result.
 		$data = array();
 
@@ -114,6 +117,9 @@ class PMPro_Zapier {
 
 		// Get the updated order.
 		$order = new MemberOrder( $order->id );
+	
+		// Add discount code data to order.
+		$order->getDiscountCode();
 
 		// Add some extra data to the result.
 		$data = array();
@@ -294,6 +300,7 @@ class PMPro_Zapier {
 		$prepared_order->user_id = $order->user_id;
 		$prepared_order->membership_id = $order->membership_id;
 		$prepared_order->billing = $order->billing;
+		$prepared_order->discount_code = $order->discount_code;
 		$prepared_order->subtotal = $order->subtotal;
 		$prepared_order->tax = $order->tax;
 		$prepared_order->total = $order->total;
