@@ -107,6 +107,7 @@ switch ( $action ) {
 		if ( empty( $pmpro_error ) && pmpro_changeMembershipLevel( $level_id, $user_id, 'zapier_changed' ) ) {
 			echo json_encode( array( 'status' => 'success' ) );
 			pmproz_webhook_log( __( 'changed level' , 'pmpro-zapier' ) );
+			do_action( 'pmproz_after_add_member', $_REQUEST, $user_id, $level_id );
 		} else {
 			echo json_encode(
 				array(
@@ -147,6 +148,7 @@ switch ( $action ) {
 			pmproz_webhook_log( __( 'changed level', 'pmpro-zapier' ) );
 			$pmpro_email = new PMProEmail();
 			$pmpro_email->sendAdminChangeEmail( $user );
+			do_action( 'pmproz_after_change_membership_level', $_REQUEST, $user_id, $level_id );
 
 		} else {
 
@@ -206,6 +208,7 @@ switch ( $action ) {
 					'order_code' => $order->code
 				) 
 			);
+			do_action( 'pmproz_after_add_order', $_REQUEST, $order );
 		} else {
 			echo json_encode(
 				array(
@@ -271,6 +274,7 @@ switch ( $action ) {
 					'status' => 'success' 
 				) 
 			);
+			do_action( 'pmproz_after_update_order', $_REQUEST, $order );
 		} else {
 			echo json_encode(
 				array(
