@@ -92,7 +92,9 @@ class PMPro_Zapier {
 
 		$data['order'] = self::prepare_order_for_request( $order );
     
-    	$data['date'] = date_i18n( get_option( 'date_format' ), $order->timestamp );
+		$data['date'] = date_i18n( get_option( 'date_format' ), $order->timestamp );
+
+		$data['trigger'] = 'pmpro_added_order';
     	
 		// filter the data before we send it to Zapier
 		$data = apply_filters('pmproz_added_order_data', $data, $order, $order->user_id );
@@ -127,6 +129,8 @@ class PMPro_Zapier {
 		$data['order'] = self::prepare_order_for_request( $order );
     
 	    $data['date'] = date_i18n( get_option( 'date_format' ), $order->timestamp );	   
+
+		$data['trigger'] = 'pmpro_updated_order';
     	
 	    // filter the data before we send it to Zapier
 		$data = apply_filters('pmproz_updated_order_data', $data, $order, $order->user_id );
@@ -190,6 +194,8 @@ class PMPro_Zapier {
 
 		$data['level'] = $level;
 
+		$data['trigger'] = 'pmpro_after_change_membership_level';
+
 		// filter the data before we send it to Zapier
 		$data = apply_filters('pmproz_after_change_membership_level_data', $data, $level_id, $user_id, $cancel_level);
 
@@ -244,6 +250,8 @@ class PMPro_Zapier {
 		} else if ( !empty( $_REQUEST['last_name'] ) ) {
 			$data['last_name'] = sanitize_text_field( $_REQUEST['last_name'] );
 		}
+
+		$data['trigger'] = 'pmpro_after_checkout';
 
 		$data = apply_filters( 'pmproz_after_checkout_data', $data, $user_id, $level, $order );
 
