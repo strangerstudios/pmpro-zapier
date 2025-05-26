@@ -107,6 +107,16 @@ switch ( $action ) {
 		if ( empty( $pmpro_error ) && pmpro_changeMembershipLevel( $level_id, $user_id, 'zapier_changed' ) ) {
 			echo json_encode( array( 'status' => 'success' ) );
 			pmproz_webhook_log( __( 'changed level' , 'pmpro-zapier' ) );
+
+			/**
+			 * Fires after a user has been assigned a membership level by the webhook handler.
+			 *
+			 * @since TBD
+			 *
+			 * @param int   $user_id  The ID of the user that was given a membership level.
+			 * @param int   $level_id The ID of the membership level that was given to the user.
+			 */
+			do_action( 'pmproz_after_add_member', $user_id, $level_id );
 		} else {
 			echo json_encode(
 				array(
@@ -147,6 +157,16 @@ switch ( $action ) {
 			pmproz_webhook_log( __( 'changed level', 'pmpro-zapier' ) );
 			$pmpro_email = new PMProEmail();
 			$pmpro_email->sendAdminChangeEmail( $user );
+
+			/**
+			 * Fires after a user's membership level is changed by the webhook handler.
+			 *
+			 * @since TBD
+			 *
+			 * @param int   $user_id  The ID of the user whose membership level was changed.
+			 * @param int   $level_id The ID of the membership level that was given to the user.
+			 */
+			do_action( 'pmproz_after_change_membership_level', $user_id, $level_id );
 
 		} else {
 
@@ -206,6 +226,15 @@ switch ( $action ) {
 					'order_code' => $order->code
 				) 
 			);
+
+			/**
+			 * Fires after an order is added by the webhook handler.
+			 *
+			 * @since TBD
+			 *
+			 * @param MemberOrder $order    The order object.
+			 */
+			do_action( 'pmproz_after_add_order', $order );
 		} else {
 			echo json_encode(
 				array(
@@ -271,6 +300,16 @@ switch ( $action ) {
 					'status' => 'success' 
 				) 
 			);
+
+			/**
+			 * Fires after an order is updated by the webhook handler.
+			 * 
+			 * @since TBD
+			 * 
+			 * @param array       $_REQUEST The request data received.
+			 * @param MemberOrder $order    The order object.
+			 */			
+			do_action( 'pmproz_after_update_order', $_REQUEST, $order );
 		} else {
 			echo json_encode(
 				array(
