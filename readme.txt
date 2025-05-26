@@ -2,8 +2,8 @@
 Contributors: strangerstudios, paidmembershipspro
 Tags: paid memberships pro, pmpro, zapier
 Requires at least: 5.2
-Tested up to: 6.6
-Stable tag: 1.2.3
+Tested up to: 6.8
+Stable tag: 1.2.4
 
 Integrate activity on your membership site with thousands of other apps via Zapier.
 
@@ -152,6 +152,11 @@ Please post it in the issues section of GitHub and we'll fix it as soon as we ca
 Please visit our premium support site at http://www.paidmembershipspro.com for more documentation and our support forums.
 
 == Changelog ==
+= 1.2.4 - 2025-05-26 =
+* ENHANCEMENT: Pass back the user_id value when the add_member action was successful. (@dwanjuki)
+* ENHANCEMENT: Added new filters for each action (receive data to PMPro) to allow further customizations. See `pmproz_after_add_member`, `pmproz_after_change_membership_level`, `pmproz_after_add_order` and `pmproz_after_update_order`(@dwanjuki)
+* BUG FIX: Fixed an issue where the discount code was not being included in the order trigger data. (@dwanjuki)
+
 = 1.2.3 - 2024-10-18 =
 * ENHANCEMENT: Added Dutch language files.
 

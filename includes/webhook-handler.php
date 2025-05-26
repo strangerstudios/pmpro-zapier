@@ -116,7 +116,7 @@ switch ( $action ) {
 			/**
 			 * Fires after a user has been assigned a membership level by the webhook handler.
 			 *
-			 * @since TBD
+			 * @since 1.2.4
 			 *
 			 * @param int   $user_id  The ID of the user that was given a membership level.
 			 * @param int   $level_id The ID of the membership level that was given to the user.
@@ -166,7 +166,7 @@ switch ( $action ) {
 			/**
 			 * Fires after a user's membership level is changed by the webhook handler.
 			 *
-			 * @since TBD
+			 * @since 1.2.4
 			 *
 			 * @param int   $user_id  The ID of the user whose membership level was changed.
 			 * @param int   $level_id The ID of the membership level that was given to the user.
@@ -235,7 +235,7 @@ switch ( $action ) {
 			/**
 			 * Fires after an order is added by the webhook handler.
 			 *
-			 * @since TBD
+			 * @since 1.2.4
 			 *
 			 * @param MemberOrder $order    The order object.
 			 */
@@ -309,12 +309,12 @@ switch ( $action ) {
 			/**
 			 * Fires after an order is updated by the webhook handler.
 			 * 
-			 * @since TBD
+			 * @since 1.2.4
 			 * 
 			 * @param array       $_REQUEST The request data received.
 			 * @param MemberOrder $order    The order object.
 			 */			
-			do_action( 'pmproz_after_update_order', $_REQUEST, $order );
+			do_action( 'pmproz_after_update_order', $order );
 		} else {
 			echo json_encode(
 				array(
