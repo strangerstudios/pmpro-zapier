@@ -105,8 +105,23 @@ switch ( $action ) {
 
 		// add membership level
 		if ( empty( $pmpro_error ) && pmpro_changeMembershipLevel( $level_id, $user_id, 'zapier_changed' ) ) {
-			echo json_encode( array( 'status' => 'success' ) );
+			echo json_encode(
+				array(
+					'status' => 'success',
+					'user_id' => $user_id,
+				)
+			);
 			pmproz_webhook_log( __( 'changed level' , 'pmpro-zapier' ) );
+
+			/**
+			 * Fires after a user has been assigned a membership level by the webhook handler.
+			 *
+			 * @since 1.2.4
+			 *
+			 * @param int   $user_id  The ID of the user that was given a membership level.
+			 * @param int   $level_id The ID of the membership level that was given to the user.
+			 */
+			do_action( 'pmproz_after_add_member', $user_id, $level_id );
 		} else {
 			echo json_encode(
 				array(
@@ -147,6 +162,16 @@ switch ( $action ) {
 			pmproz_webhook_log( __( 'changed level', 'pmpro-zapier' ) );
 			$pmpro_email = new PMProEmail();
 			$pmpro_email->sendAdminChangeEmail( $user );
+
+			/**
+			 * Fires after a user's membership level is changed by the webhook handler.
+			 *
+			 * @since 1.2.4
+			 *
+			 * @param int   $user_id  The ID of the user whose membership level was changed.
+			 * @param int   $level_id The ID of the membership level that was given to the user.
+			 */
+			do_action( 'pmproz_after_change_membership_level', $user_id, $level_id );
 
 		} else {
 
@@ -206,6 +231,15 @@ switch ( $action ) {
 					'order_code' => $order->code
 				) 
 			);
+
+			/**
+			 * Fires after an order is added by the webhook handler.
+			 *
+			 * @since 1.2.4
+			 *
+			 * @param MemberOrder $order    The order object.
+			 */
+			do_action( 'pmproz_after_add_order', $order );
 		} else {
 			echo json_encode(
 				array(
@@ -271,6 +305,16 @@ switch ( $action ) {
 					'status' => 'success' 
 				) 
 			);
+
+			/**
+			 * Fires after an order is updated by the webhook handler.
+			 * 
+			 * @since 1.2.4
+			 * 
+			 * @param array       $_REQUEST The request data received.
+			 * @param MemberOrder $order    The order object.
+			 */			
+			do_action( 'pmproz_after_update_order', $order );
 		} else {
 			echo json_encode(
 				array(

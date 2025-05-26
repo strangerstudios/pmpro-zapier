@@ -1,17 +1,17 @@
-# Copyright (C) 2024 Paid Memberships Pro
+# Copyright (C) 2025 Paid Memberships Pro
 # This file is distributed under the same license as the Paid Memberships Pro - Zapier Add On plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Paid Memberships Pro - Zapier Add On 1.2.3\n"
+"Project-Id-Version: Paid Memberships Pro - Zapier Add On 1.2.4\n"
 "Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
 "Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-10-18T08:39:40+00:00\n"
+"POT-Creation-Date: 2025-05-26T13:43:25+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: pmpro-zapier\n"
 
 #: includes/settings.php:288
@@ -47,23 +47,29 @@ msgid "https://www.paidmembershipspro.com/add-ons/pmpro-zapier/"
 msgstr "https://www.paidmembershipspro.com/add-ons/pmpro-zapier/"
 
 #: includes/webhook-handler.php:366
+#: includes/webhook-handler.php:410
 msgid "Zapier Log"
 msgstr "Zapier Log"
 
 #: includes/webhook-handler.php:345
+#: includes/webhook-handler.php:389
 msgid "Logged On"
 msgstr "Ingelogd"
 
 #: includes/webhook-handler.php:142
+#: includes/webhook-handler.php:157
 msgid "You must pass in a new level_id or 0."
 msgstr "Je moet een nieuwe level_id of 0 invullen."
 
 #: includes/webhook-handler.php:137
+#: includes/webhook-handler.php:152
 msgid "You must pass in a user_id, user_login, or user_email."
 msgstr "Je moet een user_id, user_login of user_email invoeren."
 
 #: includes/webhook-handler.php:109
 #: includes/webhook-handler.php:147
+#: includes/webhook-handler.php:114
+#: includes/webhook-handler.php:162
 msgid "changed level"
 msgstr "veranderd niveau"
 
@@ -238,6 +244,7 @@ msgid "Send Data to Zapier (Triggers)"
 msgstr "Gegevens verzenden naar Zapier (triggers)"
 
 #: includes/settings.php:21
+#, php-format
 msgid "Integrate activity on your membership site with thousands of other apps via Zapier. <a href=\"%s\" target=\"_blank\">Read the documentation</a> for more information about this Add On."
 msgstr "Integreer activiteit op je lidmaatschapssite met duizenden andere apps via Zapier. <a href=\"%s\" target=\"_blank\">Lees de documentatie</a> voor meer informatie over deze add-on."
 
@@ -256,6 +263,7 @@ msgid "Zapier Settings - Paid Memberships Pro"
 msgstr "Zapier instellingen - Paid Memberships Pro"
 
 #: includes/class-pmpro-zapier.php:278
+#: includes/class-pmpro-zapier.php:292
 msgid "An error occurred: "
 msgstr "Er is een fout opgetreden: "
 
@@ -280,5 +288,6 @@ msgid "Settings"
 msgstr "Instellingen"
 
 #: includes/admin.php:32
+#, php-format
 msgid "Thank you for activating. <a href=\"%s\">Visit the settings page</a> to get started with the Zapier Add On."
 msgstr "Bedankt voor je activatie. <a href=\"%s\">Bezoek de instellingenpagina</a> om aan de slag te gaan met de Zapier add-on."
