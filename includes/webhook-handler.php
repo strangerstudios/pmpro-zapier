@@ -105,7 +105,12 @@ switch ( $action ) {
 
 		// add membership level
 		if ( empty( $pmpro_error ) && pmpro_changeMembershipLevel( $level_id, $user_id, 'zapier_changed' ) ) {
-			echo json_encode( array( 'status' => 'success' ) );
+			echo json_encode(
+				array(
+					'status' => 'success',
+					'user_id' => $user_id,
+				)
+			);
 			pmproz_webhook_log( __( 'changed level' , 'pmpro-zapier' ) );
 
 			/**
