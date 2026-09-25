@@ -10,6 +10,10 @@ Text Domain: pmpro-zapier
 Domain Path: /languages
 */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 // Includes.
 define( 'PMPRO_ZAPIER_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PMPRO_ZAPIER_BASENAME', plugin_basename( __FILE__ ) );
