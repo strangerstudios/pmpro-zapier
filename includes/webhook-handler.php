@@ -15,7 +15,8 @@ $action         = ! empty( $_REQUEST['action'] ) ? sanitize_text_field( $_REQUES
 
 header( 'Content-Type: application/json' );
 
-if ( $api_key != $pmproz_options['api_key'] ) {
+// Stored keys may be mixed-case, while sanitize_key() lowercases the incoming key.
+if ( ! hash_equals( strtolower( (string) $pmproz_options['api_key'] ), $api_key ) ) {
 	status_header( 403 );
 	echo json_encode( __( 'A valid API key is required.', 'pmpro-zapier' ) );
 	exit;
