@@ -39,7 +39,8 @@ class PMPro_Zapier {
 	static function get_options() {
 		$options = get_option( 'pmproz_options' );
 
-		if( !empty( $_REQUEST['pmproz_generate_api_key'] ) && current_user_can( 'manage_options' ) ){
+		// Only regenerate the API key on request if the user can manage options and the request has a valid nonce.
+		if ( ! empty( $_REQUEST['pmproz_generate_api_key'] ) && current_user_can( 'manage_options' ) && ! empty( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( sanitize_key( $_REQUEST['_wpnonce'] ), 'pmproz_generate_api_key' ) ) {
 			$can_generate = true;
 		} else {
 			$can_generate = false;
