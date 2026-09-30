@@ -22,7 +22,7 @@ function pmproz_add_submenu_page() {
 		<?php settings_errors(); ?>
 		<form action="options.php" method="POST">
 			<h1><?php esc_html_e( 'Paid Memberships Pro - Zapier Add On', 'pmpro-zapier' ); ?></h1>
-			<p><?php echo wp_kses_post( sprintf( __( 'Integrate activity on your membership site with thousands of other apps via Zapier. <a href="%s" target="_blank">Read the documentation</a> for more information about this Add On.', 'pmpro-zapier' ), 'https://www.paidmembershipspro.com/add-ons/pmpro-zapier/' ) ); ?></p>
+			<p><?php echo wp_kses_post( sprintf( __( 'Integrate activity on your membership site with thousands of other apps via Zapier. <a href="%s" target="_blank">Read the documentation</a> for more information about this Add On.', 'pmpro-zapier' ), esc_url( 'https://www.paidmembershipspro.com/add-ons/pmpro-zapier/' ) ) ); ?></p>
 			<?php
 			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only tab switch, cast to bool.
 			if ( isset( $_REQUEST['account_settings'] ) ) {
