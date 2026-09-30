@@ -2,8 +2,8 @@
 Contributors: strangerstudios, paidmembershipspro
 Tags: paid memberships pro, pmpro, zapier
 Requires at least: 5.2
-Tested up to: 6.8
-Stable tag: 1.2.4
+Tested up to: 7.1
+Stable tag: 1.2.5
 
 Integrate activity on your membership site with thousands of other apps via Zapier.
 
@@ -152,6 +152,13 @@ Please post it in the issues section of GitHub and we'll fix it as soon as we ca
 Please visit our premium support site at http://www.paidmembershipspro.com for more documentation and our support forums.
 
 == Changelog ==
+= 1.2.5 - 2026-09-30 =
+* SECURITY: Regenerating the Zapier API key now requires a nonce and is done with the new Regenerate API Key button on the Zapier settings page. The `?pmproz_generate_api_key=1` URL no longer regenerates the key on its own. #79 (@dparker1005)
+* SECURITY: The debug log is now stored in the PMPro restricted files directory when available (PMPro 3.5+). Older PMPro versions still write it to the plugin's logs folder. #80 (@dparker1005)
+* SECURITY: Improved sanitization and escaping throughout the plugin to resolve Plugin Check security findings. #78 (@dparker1005)
+* BUG FIX: Fixed webhook API key validation failing when the stored key contained uppercase characters. #79 (@dparker1005)
+* BUG FIX: Fixed first and last names with apostrophes being sent to Zapier with a stray backslash after checkout. #78 (@dparker1005)
+
 = 1.2.4 - 2025-05-26 =
 * ENHANCEMENT: Pass back the user_id value when the add_member action was successful. (@dwanjuki)
 * ENHANCEMENT: Added new filters for each action (receive data to PMPro) to allow further customizations. See `pmproz_after_add_member`, `pmproz_after_change_membership_level`, `pmproz_after_add_order` and `pmproz_after_update_order`(@dwanjuki)
