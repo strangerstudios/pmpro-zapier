@@ -91,6 +91,30 @@ function pmproz_admin_init() {
 add_action( 'admin_init', 'pmproz_admin_init' );
 
 /**
+ * Regenerate the API key when the Regenerate API Key button is clicked.
+ */
+function pmproz_regenerate_api_key() {
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Presence check only; check_admin_referer() runs below.
+	if ( empty( $_REQUEST['pmproz_generate_api_key'] ) || ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
+	check_admin_referer( 'pmproz_generate_api_key' );
+
+	$options            = PMPro_Zapier::get_options();
+	$options['api_key'] = strtolower( wp_generate_password( 32, false ) );
+	PMPro_Zapier::update_options( $options );
+
+	// Show a notice on the settings page after the redirect.
+	add_settings_error( 'pmproz_options', 'pmproz_api_key_regenerated', __( 'API key regenerated. Update your Zaps with the new webhook URL.', 'pmpro-zapier' ), 'updated' );
+	set_transient( 'settings_errors', get_settings_errors(), 30 );
+
+	wp_safe_redirect( admin_url( 'admin.php?page=pmpro-zapier&account_settings=1&settings-updated=true' ) );
+	exit;
+}
+add_action( 'admin_init', 'pmproz_regenerate_api_key' );
+
+/**
  * Validate PMPro Zapier settings/options
  */
 function pmproz_options_validate( $input ) {
@@ -196,6 +220,7 @@ function pmproz_settings_field_api_key() {
 
 	?>
 	<input type="text" name="pmproz_options[api_key]" size=40 value="<?php echo esc_attr( $pmproz_options['api_key'] ); ?>" readonly>
+	<a class="button" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin.php?page=pmpro-zapier&account_settings=1&pmproz_generate_api_key=1' ), 'pmproz_generate_api_key' ) ); ?>" onclick="return confirm( '<?php echo esc_js( __( 'Are you sure? Existing Zaps will stop working until you update them with the new webhook URL.', 'pmpro-zapier' ) ); ?>' );"><?php esc_html_e( 'Regenerate API Key', 'pmpro-zapier' ); ?></a>
 	<?php
 
 	
