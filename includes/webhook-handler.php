@@ -390,9 +390,20 @@ function pmproz_webhook_exit() {
 
 		// save to log
 		if ( defined( 'PMPRO_ZAPIER_DEBUG_LOG' ) && true === PMPRO_ZAPIER_DEBUG_LOG ) {			
-			$loghandle = fopen( PMPRO_ZAPIER_DIR . '/logs/zapier-logs.txt', 'a+' );
-			fwrite( $loghandle, $logstr );
-			fclose( $loghandle );
+			// Use the PMPro restricted files directory when available (PMPro 3.5+).
+			$logfile = PMPRO_ZAPIER_DIR . '/logs/zapier-logs.txt';
+			if ( function_exists( 'pmpro_get_restricted_file_path' ) ) {
+				$restricted_logfile = pmpro_get_restricted_file_path( 'logs', 'zapier-logs.txt' );
+				if ( ! empty( $restricted_logfile ) ) {
+					$logfile = $restricted_logfile;
+				}
+			}
+
+			$loghandle = fopen( $logfile, 'a+' );
+			if ( $loghandle ) {
+				fwrite( $loghandle, $logstr );
+				fclose( $loghandle );
+			}
 		}
 		
 		if( defined( 'PMPRO_ZAPIER_DEBUG' ) && PMPRO_ZAPIER_DEBUG !== false ) {
