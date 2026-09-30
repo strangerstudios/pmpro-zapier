@@ -9,13 +9,15 @@ global $pmpro_error, $logstr;
 // Log string for debugging.
 $logstr = '';
 
+// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Zapier webhook requests are authenticated by the API key check below, not a nonce.
 $pmproz_options = PMPro_Zapier::get_options();
 $api_key        = ! empty( $_REQUEST['api_key'] ) ? sanitize_key( $_REQUEST['api_key'] ) : '';
-$action         = ! empty( $_REQUEST['action'] ) ? sanitize_text_field( $_REQUEST['action'] ) : '';
+$action         = ! empty( $_REQUEST['action'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['action'] ) ) : '';
 
 header( 'Content-Type: application/json' );
 
-if ( $api_key != $pmproz_options['api_key'] ) {
+// Stored keys may be mixed-case, while sanitize_key() lowercases the incoming key.
+if ( ! hash_equals( strtolower( (string) $pmproz_options['api_key'] ), $api_key ) ) {
 	status_header( 403 );
 	echo json_encode( __( 'A valid API key is required.', 'pmpro-zapier' ) );
 	exit;
@@ -390,15 +392,26 @@ function pmproz_webhook_exit() {
 
 		// save to log
 		if ( defined( 'PMPRO_ZAPIER_DEBUG_LOG' ) && true === PMPRO_ZAPIER_DEBUG_LOG ) {			
-			$loghandle = fopen( PMPRO_ZAPIER_DIR . '/logs/zapier-logs.txt', 'a+' );
-			fwrite( $loghandle, $logstr );
-			fclose( $loghandle );
+			// Use the PMPro restricted files directory when available (PMPro 3.5+).
+			$logfile = PMPRO_ZAPIER_DIR . '/logs/zapier-logs.txt';
+			if ( function_exists( 'pmpro_get_restricted_file_path' ) ) {
+				$restricted_logfile = pmpro_get_restricted_file_path( 'logs', 'zapier-logs.txt' );
+				if ( ! empty( $restricted_logfile ) ) {
+					$logfile = $restricted_logfile;
+				}
+			}
+
+			$loghandle = fopen( $logfile, 'a+' );
+			if ( $loghandle ) {
+				fwrite( $loghandle, $logstr );
+				fclose( $loghandle );
+			}
 		}
 		
 		if( defined( 'PMPRO_ZAPIER_DEBUG' ) && PMPRO_ZAPIER_DEBUG !== false ) {
 			// output to screen
 			if ( current_user_can( 'manage_options' ) ) {
-				echo $logstr;
+				echo $logstr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Debug-only log for admins, sent in an application/json response.
 			}
 			
 			// send email

@@ -5,10 +5,14 @@ Plugin URI: https://www.paidmembershipspro.com/add-ons/pmpro-zapier/
 Description: Integrate activity on your membership site with thousands of other apps via Zapier.
 Author: Paid Memberships Pro
 Author URI: https://www.paidmembershipspro.com
-Version: 1.2.4
+Version: 1.2.5
 Text Domain: pmpro-zapier
 Domain Path: /languages
 */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 // Includes.
 define( 'PMPRO_ZAPIER_DIR', plugin_dir_path( __FILE__ ) );

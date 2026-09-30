@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Add PMPro Zapier Settings page to the admin menu at Memberships > PMPro Zapier.
  * Uses admin_menu hook
@@ -18,10 +22,11 @@ function pmproz_add_submenu_page() {
 		<?php settings_errors(); ?>
 		<form action="options.php" method="POST">
 			<h1><?php esc_html_e( 'Paid Memberships Pro - Zapier Add On', 'pmpro-zapier' ); ?></h1>
-			<p><?php printf( __( 'Integrate activity on your membership site with thousands of other apps via Zapier. <a href="%s" target="_blank">Read the documentation</a> for more information about this Add On.', 'pmpro-zapier' ), 'https://www.paidmembershipspro.com/add-ons/pmpro-zapier/' ); ?></p>
+			<p><?php echo wp_kses_post( sprintf( __( 'Integrate activity on your membership site with thousands of other apps via Zapier. <a href="%s" target="_blank">Read the documentation</a> for more information about this Add On.', 'pmpro-zapier' ), esc_url( 'https://www.paidmembershipspro.com/add-ons/pmpro-zapier/' ) ) ); ?></p>
 			<?php
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only tab switch, cast to bool.
 			if ( isset( $_REQUEST['account_settings'] ) ) {
-				$account = (bool)$_REQUEST['account_settings'];
+				$account = (bool)$_REQUEST['account_settings']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only tab switch, cast to bool.
 			} else {
 				$account = false;
 			}
@@ -56,8 +61,9 @@ function pmproz_add_submenu_page() {
  */
 function pmproz_admin_init() {
 	// check to see if the account_settings tab is being displayed.
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only tab switch, cast to bool.
 	if ( isset( $_REQUEST['account_settings'] ) ) {
-		$account = (bool)$_REQUEST['account_settings'];
+		$account = (bool)$_REQUEST['account_settings']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only tab switch, cast to bool.
 	} else {
 		$account = false;
 	}
@@ -89,6 +95,30 @@ function pmproz_admin_init() {
 	}
 }
 add_action( 'admin_init', 'pmproz_admin_init' );
+
+/**
+ * Regenerate the API key when the Regenerate API Key button is clicked.
+ */
+function pmproz_regenerate_api_key() {
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Presence check only; check_admin_referer() runs below.
+	if ( empty( $_REQUEST['pmproz_generate_api_key'] ) || ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
+	check_admin_referer( 'pmproz_generate_api_key' );
+
+	$options            = PMPro_Zapier::get_options();
+	$options['api_key'] = strtolower( wp_generate_password( 32, false ) );
+	PMPro_Zapier::update_options( $options );
+
+	// Show a notice on the settings page after the redirect.
+	add_settings_error( 'pmproz_options', 'pmproz_api_key_regenerated', __( 'API key regenerated. Update your Zaps with the new webhook URL.', 'pmpro-zapier' ), 'updated' );
+	set_transient( 'settings_errors', get_settings_errors(), 30 );
+
+	wp_safe_redirect( admin_url( 'admin.php?page=pmpro-zapier&account_settings=1&settings-updated=true' ) );
+	exit;
+}
+add_action( 'admin_init', 'pmproz_regenerate_api_key' );
 
 /**
  * Validate PMPro Zapier settings/options
@@ -136,17 +166,17 @@ function pmproz_list_of_available_actions(){
 		<tr>
 			<th scope="row"><?php esc_attr_e( 'add_member', 'pmpro-zapier' ); ?></th>
 			<td>
-				<p><strong><?php echo __( 'Accepted Data', 'pmpro-zapier' ) . ': ' . 'first_name, last_name, full_name, user_login, user_email, level_id.'; ?></strong></p>
-				<p><?php _e( 'Creates a new user if an account does not exist and assigns a membership level.', 'pmpro-zapier' ); ?></p>
-				<p><?php _e( 'If the user exists and is a non-member, assign a membership level to their account.', 'pmpro-zapier' ); ?></p>
-				<p><?php _e( 'If the user exists and currently has a membership level, no changes will be made to the user.', 'pmpro-zapier' ); ?></p>
+				<p><strong><?php echo esc_html__( 'Accepted Data', 'pmpro-zapier' ) . ': ' . 'first_name, last_name, full_name, user_login, user_email, level_id.'; ?></strong></p>
+				<p><?php esc_html_e( 'Creates a new user if an account does not exist and assigns a membership level.', 'pmpro-zapier' ); ?></p>
+				<p><?php esc_html_e( 'If the user exists and is a non-member, assign a membership level to their account.', 'pmpro-zapier' ); ?></p>
+				<p><?php esc_html_e( 'If the user exists and currently has a membership level, no changes will be made to the user.', 'pmpro-zapier' ); ?></p>
 			</td>
 		</tr>
 		<!-- change_membership_level -->
 		<tr>
 			<th scope="row"><?php esc_attr_e( 'change_membership_level', 'pmpro-zapier' ); ?></th>
 			<td>
-				<p><strong><?php echo __( 'Accepted Data', 'pmpro-zapier' ) . ': ' . 'user_email, level_id.'; ?></strong></p>
+				<p><strong><?php echo esc_html__( 'Accepted Data', 'pmpro-zapier' ) . ': ' . 'user_email, level_id.'; ?></strong></p>
 				<p><?php esc_html_e( "This requires the user to exist on your WordPress site. This will change the user's membership level or assign a level if they do not have an active level.", 'pmpro-zapier' ); ?></p>
 			</td>
 		</tr>
@@ -155,7 +185,7 @@ function pmproz_list_of_available_actions(){
 		<tr>
 			<th scope="row"><?php esc_attr_e( 'add_order', 'pmpro-zapier' ); ?></th>
 			<td>
-				<p><strong><?php echo __( 'Accepted Data', 'pmpro-zapier' ) . ': ' . 'user_email, level_id, subtotal, tax, couponamount, total, payment_type, cardtype, accountnumber, expirationmonth, expirationyear, status, gateway, gateway_environment, payment_transaction_id, subscription_transaction_id, affiliate_id, affiliate_subid, notes, checkout_id, billing_name, billing_street, billing_city, billing_state, billing_zip, billing_country, billing_phone.'; ?></strong></p>
+				<p><strong><?php echo esc_html__( 'Accepted Data', 'pmpro-zapier' ) . ': ' . 'user_email, level_id, subtotal, tax, couponamount, total, payment_type, cardtype, accountnumber, expirationmonth, expirationyear, status, gateway, gateway_environment, payment_transaction_id, subscription_transaction_id, affiliate_id, affiliate_subid, notes, checkout_id, billing_name, billing_street, billing_city, billing_state, billing_zip, billing_country, billing_phone.'; ?></strong></p>
 				<p><?php esc_html_e( "This will create a new Paid Memberships Pro order for a user.", 'pmpro-zapier' ); ?></p>
 			</td>
 		</tr>
@@ -196,6 +226,7 @@ function pmproz_settings_field_api_key() {
 
 	?>
 	<input type="text" name="pmproz_options[api_key]" size=40 value="<?php echo esc_attr( $pmproz_options['api_key'] ); ?>" readonly>
+	<a class="button" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin.php?page=pmpro-zapier&account_settings=1&pmproz_generate_api_key=1' ), 'pmproz_generate_api_key' ) ); ?>" onclick="return confirm( '<?php echo esc_js( __( 'Are you sure? Existing Zaps will stop working until you update them with the new webhook URL.', 'pmpro-zapier' ) ); ?>' );"><?php esc_html_e( 'Regenerate API Key', 'pmpro-zapier' ); ?></a>
 	<?php
 
 	
