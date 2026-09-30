@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Run the init method of the PMPro_Zapier class,
  * which adds the rest of the hooks.
@@ -29,7 +33,7 @@ function pmproz_admin_notice() {
 	// Check transient, if available display notice.
 	if ( get_transient( 'pmproz-admin-notice' ) ) { ?>
 		<div class="updated notice is-dismissible">
-			<p><?php printf( __( 'Thank you for activating. <a href="%s">Visit the settings page</a> to get started with the Zapier Add On.', 'pmpro-zapier' ), get_admin_url( null, 'admin.php?page=pmpro-zapier' ) ); ?></p>
+			<p><?php echo wp_kses_post( sprintf( __( 'Thank you for activating. <a href="%s">Visit the settings page</a> to get started with the Zapier Add On.', 'pmpro-zapier' ), esc_url( get_admin_url( null, 'admin.php?page=pmpro-zapier' ) ) ) ); ?></p>
 		</div>
 		<?php
 		// Delete transient, only display this notice once.

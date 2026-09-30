@@ -9,9 +9,10 @@ global $pmpro_error, $logstr;
 // Log string for debugging.
 $logstr = '';
 
+// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Zapier webhook requests are authenticated by the API key check below, not a nonce.
 $pmproz_options = PMPro_Zapier::get_options();
 $api_key        = ! empty( $_REQUEST['api_key'] ) ? sanitize_key( $_REQUEST['api_key'] ) : '';
-$action         = ! empty( $_REQUEST['action'] ) ? sanitize_text_field( $_REQUEST['action'] ) : '';
+$action         = ! empty( $_REQUEST['action'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['action'] ) ) : '';
 
 header( 'Content-Type: application/json' );
 
@@ -410,7 +411,7 @@ function pmproz_webhook_exit() {
 		if( defined( 'PMPRO_ZAPIER_DEBUG' ) && PMPRO_ZAPIER_DEBUG !== false ) {
 			// output to screen
 			if ( current_user_can( 'manage_options' ) ) {
-				echo $logstr;
+				echo $logstr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Debug-only log for admins, sent in an application/json response.
 			}
 			
 			// send email

@@ -27,6 +27,7 @@ class PMPro_Zapier {
 		load_plugin_textdomain( 'pmpro-zapier' );
 		
 		// Load the webhook if the param is passed.
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Routing only; the webhook handler authenticates with the API key.
 		if ( ! empty( $_REQUEST['pmpro_zapier_webhook'] ) ) {
 			require_once( PMPRO_ZAPIER_DIR . '/includes/webhook-handler.php' );
 			exit;
@@ -186,6 +187,7 @@ class PMPro_Zapier {
 		
 		// Get old level's status so we know why they changed levels.
 		if ( ! empty( $cancel_level ) ) {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQLPlaceholders.LikeWithoutWildcards -- Prepared query on the PMPro memberships_users table; LIKE without wildcards kept as-is.
 			$data['old_level_status'] = $wpdb->get_var( $wpdb->prepare( "SELECT status FROM {$wpdb->pmpro_memberships_users} WHERE user_id = %d AND membership_id = %d AND status NOT LIKE 'active' ORDER BY id LIMIT 1", $user_id, $cancel_level ) );
 		}
 		if ( empty( $data['old_level_status'] ) ) {
@@ -239,17 +241,19 @@ class PMPro_Zapier {
 		$data['first_name'] = "";
 		$data['last_name'] = "";
 
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only use of checkout fields for the Zapier payload; PMPro core verifies pmpro_checkout_nonce before checkout completes.
 		if( !empty( $_REQUEST['bfirstname'] ) ) {
-			$data['first_name'] = sanitize_text_field( $_REQUEST['bfirstname'] );
+			$data['first_name'] = sanitize_text_field( wp_unslash( $_REQUEST['bfirstname'] ) );
 		} else if ( !empty( $_REQUEST['first_name'] ) ) {
-			$data['first_name'] = sanitize_text_field( $_REQUEST['first_name'] );
+			$data['first_name'] = sanitize_text_field( wp_unslash( $_REQUEST['first_name'] ) );
 		}
 		
 		if( !empty( $_REQUEST['blastname'] ) ) {
-			$data['last_name'] = sanitize_text_field( $_REQUEST['blastname'] );
+			$data['last_name'] = sanitize_text_field( wp_unslash( $_REQUEST['blastname'] ) );
 		} else if ( !empty( $_REQUEST['last_name'] ) ) {
-			$data['last_name'] = sanitize_text_field( $_REQUEST['last_name'] );
+			$data['last_name'] = sanitize_text_field( wp_unslash( $_REQUEST['last_name'] ) );
 		}
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
 		$data['trigger'] = 'pmpro_after_checkout';
 
