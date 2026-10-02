@@ -108,7 +108,7 @@ function pmproz_regenerate_api_key() {
 	check_admin_referer( 'pmproz_generate_api_key' );
 
 	$options            = PMPro_Zapier::get_options();
-	$options['api_key'] = strtolower( wp_generate_password( 32, false ) );
+	$options['api_key'] = bin2hex( random_bytes( 16 ) );
 	PMPro_Zapier::update_options( $options );
 
 	// Show a notice on the settings page after the redirect.

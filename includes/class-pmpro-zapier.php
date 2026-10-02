@@ -42,7 +42,7 @@ class PMPro_Zapier {
 
 		// generate an API key if we don't have one yet
 		if ( empty( $options['api_key'] ) ) {
-			$options['api_key'] = strtolower( wp_generate_password( 32, false ) );
+			$options['api_key'] = bin2hex( random_bytes( 16 ) );
 			PMPro_Zapier::update_options( $options );
 		}
 
