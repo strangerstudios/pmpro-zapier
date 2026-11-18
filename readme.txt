@@ -3,7 +3,7 @@ Contributors: strangerstudios, paidmembershipspro
 Tags: paid memberships pro, pmpro, zapier
 Requires at least: 5.2
 Tested up to: 7.1
-Stable tag: 1.2.5
+Stable tag: 1.2.6
 
 Integrate activity on your membership site with thousands of other apps via Zapier.
 
@@ -152,6 +152,9 @@ Please post it in the issues section of GitHub and we'll fix it as soon as we ca
 Please visit our premium support site at http://www.paidmembershipspro.com for more documentation and our support forums.
 
 == Changelog ==
+= 1.2.6 - 2026-11-18 =
+* BUG FIX: Generated Zapier API keys now use `random_bytes()` so that `random_password` filters can no longer add characters that break webhook authentication. If your webhooks fail to authenticate, click "Regenerate API Key" on the Zapier settings page. #81 (@dparker1005)
+
 = 1.2.5 - 2026-09-30 =
 * SECURITY: Regenerating the Zapier API key now requires a nonce and is done with the new Regenerate API Key button on the Zapier settings page. The `?pmproz_generate_api_key=1` URL no longer regenerates the key on its own. #79 (@dparker1005)
 * SECURITY: The debug log is now stored in the PMPro restricted files directory when available (PMPro 3.5+). Older PMPro versions still write it to the plugin's logs folder. #80 (@dparker1005)
