@@ -141,8 +141,10 @@ switch ( $action ) {
 
 		// need a user id, login, or email address and a membership level id
 		$user     = pmproz_get_user_data();
-		$level_id = intval( pmpro_getParam( 'level_id' ) );
-		$user_id  = $user->ID;
+		$user_id  = ! empty( $user ) ? $user->ID : 0;
+
+		// pmpro_getParam() returns '' for both a missing level_id and level_id=0, so check the raw value.
+		$level_id = ( isset( $_REQUEST['level_id'] ) && is_numeric( $_REQUEST['level_id'] ) ) ? intval( $_REQUEST['level_id'] ) : null;
 
 		// old level status
 		$old_level_status = pmpro_getParam( 'old_level_status', 'REQUEST', 'zapier_changed' );
@@ -155,7 +157,7 @@ switch ( $action ) {
 		}
 
 		// check the level
-		if ( empty( $level_id ) && $level_id !== 0 ) {
+		if ( null === $level_id ) {
 			$pmpro_error .= __( 'You must pass in a new level_id or 0.', 'pmpro-zapier' );
 		}
 
@@ -190,6 +192,19 @@ switch ( $action ) {
 
 	case 'add_order':
 		$user = pmproz_get_user_data();
+
+		// don't save an order that isn't attached to a user.
+		if ( empty( $user ) ) {
+			$pmpro_error = __( 'You must pass in a user_id, user_login, or user_email.', 'pmpro-zapier' );
+			echo json_encode(
+				array(
+					'status'  => 'failed',
+					'message' => $pmpro_error,
+				)
+			);
+			pmproz_webhook_log( $pmpro_error );
+			break;
+		}
 
 		$order                = new MemberOrder();
 		$order->user_id       = $user->ID;
@@ -329,10 +344,9 @@ switch ( $action ) {
 	case 'has_membership_level':
 		$user = pmproz_get_user_data();
 
-		$user_id  = $user->ID;
 		$level_id = intval( pmpro_getParam( 'level_id' ) );
 
-		if ( pmpro_hasMembershipLevel( $level_id, $user_id ) ) {
+		if ( ! empty( $user ) && pmpro_hasMembershipLevel( $level_id, $user->ID ) ) {
 			echo json_encode( 'true' );
 		} else {
 			echo json_encode( 'false' );
