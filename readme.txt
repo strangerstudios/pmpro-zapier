@@ -3,7 +3,7 @@ Contributors: strangerstudios, paidmembershipspro
 Tags: paid memberships pro, pmpro, zapier
 Requires at least: 5.2
 Tested up to: 7.1
-Stable tag: 1.2.6
+Stable tag: 1.2.7
 
 Integrate activity on your membership site with thousands of other apps via Zapier.
 
@@ -150,6 +150,14 @@ Please post it in the issues section of GitHub and we'll fix it as soon as we ca
 Please visit our premium support site at http://www.paidmembershipspro.com for more documentation and our support forums.
 
 == Changelog ==
+= 1.2.7 - 2026-11-20 =
+* ENHANCEMENT: Corrected the `add_member` help text on the Zapier settings page and removed `couponamount` from the documented `add_order` and `update_order` fields, since it is not saved. #86 (@dparker1005)
+* BUG FIX: The `add_member` action now checks for a valid `level_id` before creating a user, and returns an error when the user can't be created instead of assigning the level to user ID 1. #82 (@dparker1005)
+* BUG FIX: The `change_membership_level` action no longer cancels a membership when `level_id` is missing or is not a whole number. #83 (@dparker1005)
+* BUG FIX: The `add_order` action now returns an error when no user matches the `user_id`, `user_login` or `user_email` passed, instead of saving an order with no user. #83 (@dparker1005)
+* BUG FIX: Fixed the `update_order` action returning invalid JSON and a PHP warning. The `add_order` and `update_order` actions now return a message when the order can't be saved. #84 (@dparker1005)
+* BUG FIX: Fixed PHP warnings in the New Order and Updated Order triggers when the order has no user. The `username` and `user_email` fields are now sent empty in that case. #85 (@dparker1005)
+
 = 1.2.6 - 2026-11-18 =
 * BUG FIX: Generated Zapier API keys now use `random_bytes()` so that `random_password` filters can no longer add characters that break webhook authentication. If your webhooks fail to authenticate, click "Regenerate API Key" on the Zapier settings page. #81 (@dparker1005)
 
