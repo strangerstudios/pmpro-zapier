@@ -40,10 +40,14 @@ switch ( $action ) {
 		$user = pmproz_get_user_data();
 
 		$level_id    = pmpro_getParam( 'level_id' );
+		$user_id     = 0;
 		$pmpro_error = '';
 
-		// only update user data if this is a new user
-		if ( empty( $user ) ) {
+		// check the level before creating a user so that a bad request doesn't leave behind a user with no level
+		if ( ! ctype_digit( (string) $level_id ) || empty( pmpro_getLevel( $level_id ) ) ) {
+			$pmpro_error .= __( 'You must pass in valid level_id.', 'pmpro-zapier' );
+		} elseif ( empty( $user ) ) {
+			// only update user data if this is a new user
 			$user_email = pmpro_getParam( 'user_email' );
 			$user_login = pmpro_getParam( 'user_login' );
 			$user_pass  = pmpro_getParam( 'user_pass' );
@@ -84,25 +88,28 @@ switch ( $action ) {
 				if ( empty( $user_id ) ) {
 					$user_id = wp_insert_user( $new_user_array );
 
-					// email the user and admin if we create the user.
-					wp_new_user_notification( $user_id, null, 'both' );
+					if ( ! is_wp_error( $user_id ) ) {
+						// email the user and admin if we create the user.
+						wp_new_user_notification( $user_id, null, 'both' );
+					}
+				}
 
+				if ( is_wp_error( $user_id ) ) {
+					// e.g. the email address is already used by a user with a different user_login.
+					$pmpro_error .= $user_id->get_error_message();
+					$user_id      = 0;
 				}
 			}
 		} else {
 			$user_id = $user->ID;
 		}
+		$level_id = (int) $level_id;
 
 		// make sure we have a user and he or she doesn't have the membership level already
-		if ( empty( $user_id ) ) {
+		if ( empty( $pmpro_error ) && empty( $user_id ) ) {
 			$pmpro_error .= __( 'User creation failed.', 'pmpro-zapier' );
-		} elseif ( pmpro_hasMembershipLevel( $level_id, $user_id ) ) {
+		} elseif ( ! empty( $user_id ) && pmpro_hasMembershipLevel( $level_id, $user_id ) ) {
 			$pmpro_error .= __( 'This user already has the membership level.', 'pmpro-zapier' );
-		}
-
-		// check the level
-		if ( empty( $level_id ) && $level_id !== '0' ) {
-			$pmpro_error .= __( 'You must pass in valid level_id.', 'pmpro-zapier' );
 		}
 
 		// add membership level
