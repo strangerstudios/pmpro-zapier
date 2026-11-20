@@ -168,8 +168,8 @@ function pmproz_list_of_available_actions(){
 			<td>
 				<p><strong><?php echo esc_html__( 'Accepted Data', 'pmpro-zapier' ) . ': ' . 'first_name, last_name, full_name, user_login, user_email, level_id.'; ?></strong></p>
 				<p><?php esc_html_e( 'Creates a new user if an account does not exist and assigns a membership level.', 'pmpro-zapier' ); ?></p>
-				<p><?php esc_html_e( 'If the user exists and is a non-member, assign a membership level to their account.', 'pmpro-zapier' ); ?></p>
-				<p><?php esc_html_e( 'If the user exists and currently has a membership level, no changes will be made to the user.', 'pmpro-zapier' ); ?></p>
+				<p><?php esc_html_e( 'If the user exists and does not already have this membership level, assign it to their account. This may replace a level they already have in the same level group.', 'pmpro-zapier' ); ?></p>
+				<p><?php esc_html_e( 'If the user exists and already has this membership level, no changes will be made to the user.', 'pmpro-zapier' ); ?></p>
 			</td>
 		</tr>
 		<!-- change_membership_level -->
@@ -185,7 +185,7 @@ function pmproz_list_of_available_actions(){
 		<tr>
 			<th scope="row"><?php esc_attr_e( 'add_order', 'pmpro-zapier' ); ?></th>
 			<td>
-				<p><strong><?php echo esc_html__( 'Accepted Data', 'pmpro-zapier' ) . ': ' . 'user_email, level_id, subtotal, tax, couponamount, total, payment_type, cardtype, accountnumber, expirationmonth, expirationyear, status, gateway, gateway_environment, payment_transaction_id, subscription_transaction_id, affiliate_id, affiliate_subid, notes, checkout_id, billing_name, billing_street, billing_city, billing_state, billing_zip, billing_country, billing_phone.'; ?></strong></p>
+				<p><strong><?php echo esc_html__( 'Accepted Data', 'pmpro-zapier' ) . ': ' . 'user_email, level_id, subtotal, tax, total, payment_type, cardtype, accountnumber, expirationmonth, expirationyear, status, gateway, gateway_environment, payment_transaction_id, subscription_transaction_id, affiliate_id, affiliate_subid, notes, checkout_id, billing_name, billing_street, billing_city, billing_state, billing_zip, billing_country, billing_phone.'; ?></strong></p>
 				<p><?php esc_html_e( "This will create a new Paid Memberships Pro order for a user.", 'pmpro-zapier' ); ?></p>
 			</td>
 		</tr>
@@ -194,7 +194,7 @@ function pmproz_list_of_available_actions(){
 		<tr>
 			<th scope="row"><?php esc_attr_e( 'update_order', 'pmpro-zapier' ); ?></th>
 			<td>
-				<p><strong><?php esc_html_e( 'Accepted Data: user_email, level_id, subtotal, tax, couponamount, total, payment_type, cardtype, accountnumber, expirationmonth, expirationyear, status, gateway, gateway_environment, payment_transaction_id, subscription_transaction_id, affiliate_id, affiliate_subid, notes, checkout_id, billing_name, billing_street, billing_city, billing_state, billing_zip, billing_country, billing_phone.', 'pmpro-zapier' ); ?></strong></p>
+				<p><strong><?php echo esc_html__( 'Accepted Data', 'pmpro-zapier' ) . ': ' . 'user_email, level_id, subtotal, tax, total, payment_type, cardtype, accountnumber, expirationmonth, expirationyear, status, gateway, gateway_environment, payment_transaction_id, subscription_transaction_id, affiliate_id, affiliate_subid, notes, checkout_id, billing_name, billing_street, billing_city, billing_state, billing_zip, billing_country, billing_phone.'; ?></strong></p>
 				<p><?php esc_html_e( 'This will update an existing Paid Memberships Pro order.', 'pmpro-zapier' ); ?></p>
 			</td>
 		</tr>
