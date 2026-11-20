@@ -44,7 +44,7 @@ switch ( $action ) {
 		$pmpro_error = '';
 
 		// check the level before creating a user so that a bad request doesn't leave behind a user with no level
-		if ( empty( $level_id ) && $level_id !== '0' ) {
+		if ( ! is_numeric( $level_id ) || empty( pmpro_getLevel( $level_id ) ) ) {
 			$pmpro_error .= __( 'You must pass in valid level_id.', 'pmpro-zapier' );
 		} elseif ( empty( $user ) ) {
 			// only update user data if this is a new user
