@@ -250,6 +250,7 @@ switch ( $action ) {
 					'message' => $pmpro_error,
 				)
 			);
+			pmproz_webhook_log( $pmpro_error );
 		}
 
 		break;
@@ -326,6 +327,7 @@ switch ( $action ) {
 					'message' => $pmpro_error,
 				)
 			);
+			pmproz_webhook_log( $pmpro_error );
 		}
 
 		break;
