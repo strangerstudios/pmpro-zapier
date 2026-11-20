@@ -144,7 +144,8 @@ switch ( $action ) {
 		$user_id  = ! empty( $user ) ? $user->ID : 0;
 
 		// pmpro_getParam() returns '' for both a missing level_id and level_id=0, so check the raw value.
-		$level_id = ( isset( $_REQUEST['level_id'] ) && is_numeric( $_REQUEST['level_id'] ) ) ? intval( $_REQUEST['level_id'] ) : null;
+		// Only accept whole numbers so that values like 0.5 are not truncated to 0 and cancel the membership.
+		$level_id = ( isset( $_REQUEST['level_id'] ) && is_scalar( $_REQUEST['level_id'] ) && ctype_digit( trim( (string) $_REQUEST['level_id'] ) ) ) ? intval( $_REQUEST['level_id'] ) : null;
 
 		// old level status
 		$old_level_status = pmpro_getParam( 'old_level_status', 'REQUEST', 'zapier_changed' );
