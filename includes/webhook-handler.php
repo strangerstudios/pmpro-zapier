@@ -44,7 +44,7 @@ switch ( $action ) {
 		$pmpro_error = '';
 
 		// check the level before creating a user so that a bad request doesn't leave behind a user with no level
-		if ( ! is_numeric( $level_id ) || empty( pmpro_getLevel( $level_id ) ) ) {
+		if ( ! ctype_digit( (string) $level_id ) || empty( pmpro_getLevel( $level_id ) ) ) {
 			$pmpro_error .= __( 'You must pass in valid level_id.', 'pmpro-zapier' );
 		} elseif ( empty( $user ) ) {
 			// only update user data if this is a new user
@@ -88,19 +88,22 @@ switch ( $action ) {
 				if ( empty( $user_id ) ) {
 					$user_id = wp_insert_user( $new_user_array );
 
-					if ( is_wp_error( $user_id ) ) {
-						// e.g. the email address is already used by a user with a different user_login.
-						$pmpro_error .= $user_id->get_error_message();
-						$user_id      = 0;
-					} else {
+					if ( ! is_wp_error( $user_id ) ) {
 						// email the user and admin if we create the user.
 						wp_new_user_notification( $user_id, null, 'both' );
 					}
+				}
+
+				if ( is_wp_error( $user_id ) ) {
+					// e.g. the email address is already used by a user with a different user_login.
+					$pmpro_error .= $user_id->get_error_message();
+					$user_id      = 0;
 				}
 			}
 		} else {
 			$user_id = $user->ID;
 		}
+		$level_id = (int) $level_id;
 
 		// make sure we have a user and he or she doesn't have the membership level already
 		if ( empty( $pmpro_error ) && empty( $user_id ) ) {
