@@ -61,7 +61,6 @@ The following parameters can be passed into the add_order Action:
 * level_id
 * subtotal
 * tax
-* couponamount
 * total
 * payment_type
 * cardtype
@@ -97,7 +96,6 @@ The following parameters can be passed into the update_order Action:
 * level_id
 * subtotal
 * tax
-* couponamount
 * total
 * payment_type
 * cardtype
