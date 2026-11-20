@@ -266,12 +266,14 @@ switch ( $action ) {
 			 */
 			do_action( 'pmproz_after_add_order', $order );
 		} else {
+			$pmpro_error = __( 'The order could not be saved.', 'pmpro-zapier' );
 			echo json_encode(
 				array(
 					'status'  => 'failed',
 					'message' => $pmpro_error,
 				)
 			);
+			pmproz_webhook_log( $pmpro_error );
 		}
 
 		break;
@@ -341,13 +343,17 @@ switch ( $action ) {
 			 */			
 			do_action( 'pmproz_after_update_order', $order );
 		} else {
+			$pmpro_error = __( 'The order could not be saved.', 'pmpro-zapier' );
 			echo json_encode(
 				array(
 					'status'  => 'failed',
 					'message' => $pmpro_error,
 				)
 			);
+			pmproz_webhook_log( $pmpro_error );
 		}
+
+		break;
 
 	case 'has_membership_level':
 		$user = pmproz_get_user_data();
